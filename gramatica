@@ -1,0 +1,31 @@
+<Programa> ::= Declare{<Lista-Declarações>}; Functions{<Lista-Funções>}; Main{Lista-Instruções};
+<Lista-Instruções> ::= <Instrução>; <Lista-Instruções> | <Instrução>;
+<Lista-Funções> ::= <Função>\n<Lista-Funções> | <Função> | ∅
+<Lista-Declarações> ::= <Declaração>; <Lista-Declarações> | <Declaração>; | ∅
+<Bloco> ::= {<Lista-Instruções>};
+<Instrução> ::= ∅ | <Se> | <Enquanto> | <Para> | <Chamada-Função> | <Atribuição> | return <Identificador>
+<Se> ::= if(<Expressão>)<Bloco> | if(<Expressão>)<Bloco>else<Bloco>
+<Enquanto> ::= while(<Expressão>)<Bloco>
+<Para> ::= for(<Atribuição>; <Expressão>; <Atribuição>)<Bloco>
+<Função> ::= <Tipo> <Identificador>(<Parâmetros>)<Bloco>
+<Declaração> ::= <Tipo> <Lista-Identificadores>
+<Tipo> ::= <Tipo-Primitivo> | List<<Tipo-Primitivo>>
+<Tipo-Primitivo> ::= Float | Int | String | Char | Boolean
+<Atribuição> ::= <Identificador> = <Matemática> | <Identificador> = “<Texto>” | <Identificador> = <Bool>
+<Bool> ::= True | False
+<Expressão> ::= <Termo-Lógico> && <Expressão> | <Termo-Lógico> || <Expressão> | <Termo-Lógico>
+<Termo-Lógico> ::= <Matemática> == <Termo-Lógico> | <Matemática> != <Termo-Lógico> | <Matemática> >= <Termo-Lógico> | <Matemática> <= <Termo-Lógico> | <Matemática> > <Termo-Lógico> | <Matemática> < <Termo-Lógico> | <Matemática> | “<Texto>” == <Termo-Lógico> | “<Texto>”
+<Texto> ::= <Carácter><Texto> | <Carácter>
+<Não-Dígito> ::= [A-z_]
+<Carácter> ::= [A-z 0-9_?!+-/*.;]
+<Matemática> ::= <Prioridade-Baixa> + <Matemática> | <Prioridade-Baixa> − <Matemática> | <Prioridade-Baixa>
+<Prioridade-Baixa> ::= <Prioridade-Alta> ∗ <Prioridade-Baixa> | <Prioridade-Alta> / <Prioridade-Baixa> | <Prioridade-Alta> % <Prioridade-Baixa> | <Prioridade-Alta>
+<Prioridade-Alta> ::= <Identificador> | <Número> | <Chamada-Função> | (<Expressão>) | !<Expressão>
+<Lista-Identificadores> ::= <Identificador>, <Lista-Identificadores> | <Identificador>
+<Identificador> ::= <Não-Dígito> | <Não-Dígito><Texto>
+<Parâmetros> ::= <Tipo> <Identificador>, <Parâmetros> | <Tipo> <Identificador>
+<Número> ::= <Lista-Dígitos>.<Lista-Dígitos> | <Lista-Dígitos>
+<Lista-Dígitos> ::= <Dígito><Lista-Dígitos> | <Dígito>
+<Dígito> ::= 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9
+<Chamada-Função> ::= <Identificador>(<Argumentos>)
+<Argumentos> ::= <Expressão>,<Argumentos> | <Expressão>
