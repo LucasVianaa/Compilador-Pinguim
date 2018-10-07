@@ -16,31 +16,34 @@ Functions {
 Main {
     scan(num1);
     scan(num2);
-    somaDiv1 = getSomaDivisores(num1);
-    somaDiv2 = getSomaDivisores(num2);
+    while(num1 != && num2 != 0){
+	    somaDiv1 = getSomaDivisores(num1);
+	    somaDiv2 = getSomaDivisores(num2);
 
-    mensagem = "";
-    if(((num2 % soma1) == 0) && ((num1 % soma2) == 0)){
-    	mensagem = "Friends and lovers <3";
-    } else {
-    	if(soma1 == soma2){
-    		mensagem = "Almost lovers!"
-    	} else {
-    		if(((num2 % soma1) != 0) && ((num1 % soma2) == 0)){
-    			mensagem = concat(mensagem, str(num1));
-    			mensagem = concat(mensagem, " friendzoned ");
-    			mensagem = concat(mensagem, str(num2));
-    		} else {
-    			if(((num2 % soma1) == 0) && ((num1 % soma2) != 0)){
-    				mensagem = concat(mensagem, str(num2));
-    				mensagem = concat(mensagem, " friendzoned ");
-    				mensagem = concat(mensagem, str(num1));
-    			} else{
-    				mensagem = "No connection.";
-    			};
-    		};
-    	};
+	    mensagem = "";
+	    if(((num2 % soma1) == 0) && ((num1 % soma2) == 0)){
+	    	mensagem = "Friends and lovers <3";
+	    } else {
+	    	if(soma1 == soma2){
+	    		mensagem = "Almost lovers!"
+	    	} else {
+	    		if(((num2 % soma1) != 0) && ((num1 % soma2) == 0)){
+	    			mensagem = concat(mensagem, str(num1));
+	    			mensagem = concat(mensagem, " friendzoned ");
+	    			mensagem = concat(mensagem, str(num2));
+	    		} else {
+	    			if(((num2 % soma1) == 0) && ((num1 % soma2) != 0)){
+	    				mensagem = concat(mensagem, str(num2));
+	    				mensagem = concat(mensagem, " friendzoned ");
+	    				mensagem = concat(mensagem, str(num1));
+	    			} else{
+	    				mensagem = "No connection.";
+	    			};
+	    		};
+	    	};
+	    };
+	    print(mensagem);
+	    scan(num1);
+    	scan(num2);
     };
-    print(mensagem);
-
 };
