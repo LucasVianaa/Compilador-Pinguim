@@ -1,0 +1,46 @@
+Declare {
+    Int num1, num2, somaDiv1, somaDiv2, soma, i;
+    String mensagem;
+};
+
+Functions {
+    int getSomaDivisores(int x){
+        soma = 0;
+        for(i = 1; i < x; i = i + 1){
+    		soma = soma + i;
+		};
+        return soma;
+	};
+};
+
+Main {
+    scan(num1);
+    scan(num2);
+    somaDiv1 = getSomaDivisores(num1);
+    somaDiv2 = getSomaDivisores(num2);
+
+    mensagem = "";
+    if(((num2 % soma1) == 0) && ((num1 % soma2) == 0)){
+    	mensagem = "Friends and lovers <3";
+    } else {
+    	if(soma1 == soma2){
+    		mensagem = "Almost lovers!"
+    	} else {
+    		if(((num2 % soma1) != 0) && ((num1 % soma2) == 0)){
+    			mensagem = concat(mensagem, str(num1));
+    			mensagem = concat(mensagem, " friendzoned ");
+    			mensagem = concat(mensagem, str(num2));
+    		} else {
+    			if(((num2 % soma1) == 0) && ((num1 % soma2) != 0)){
+    				mensagem = concat(mensagem, str(num2));
+    				mensagem = concat(mensagem, " friendzoned ");
+    				mensagem = concat(mensagem, str(num1));
+    			} else{
+    				mensagem = "No connection.";
+    			};
+    		};
+    	};
+    };
+    print(mensagem);
+
+};
