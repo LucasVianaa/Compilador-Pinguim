@@ -1,6 +1,7 @@
 Declare {
     Int i, tamanho, temp, novaPos, numeroCasos, numeroTestes, j;
     String novoTexto, textoOriginal, tempStr, casoTeste;
+    List<String> casos;
 };
 
 Functions {
@@ -69,15 +70,15 @@ Main {
     	scan(numeroTestes);
     	for(j = 0; j < numeroTestes; j = j+1){
     		scan(casoTeste);
-    		casoTeste = split(casoTeste, " ");
-    		if(casoTeste[0] == "2"){
+    		casos = split(casoTeste, " ");
+    		if(casos[0] == "2"){
     			print(textoOriginal);
     		} else {
-    			if(casoTeste[0] == "1"){
-    				textoOriginal = passaConsoante(textoOriginal, int(entrada[1]))
+    			if(casos[0] == "1"){
+    				textoOriginal = passaConsoante(textoOriginal, int(casos[1]))
     			} else {
-    				if(casoTeste[0] == "0"){
-    					textoOriginal = passaVogal(textoOriginal, int(entrada[1]))
+    				if(casos[0] == "0"){
+    					textoOriginal = passaVogal(textoOriginal, int(casos[1]))
     				};
     			};
     		};

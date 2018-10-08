@@ -1,6 +1,7 @@
 Declare {
     Int num1, num2, somaDiv1, somaDiv2, soma, i;
-    String mensagem;
+    String mensagem, temp;
+    List<String> entrada;
 };
 
 Functions {
@@ -14,8 +15,11 @@ Functions {
 };
 
 Main {
-    scan(num1);
-    scan(num2);
+
+	scan(temp);
+	entrada = split(temp, " ");
+    num1 = int(entrada[0]);
+    num2 = int(entrada[1]);
     while(num1 != && num2 != 0){
 	    somaDiv1 = getSomaDivisores(num1);
 	    somaDiv2 = getSomaDivisores(num2);
@@ -43,7 +47,9 @@ Main {
 	    	};
 	    };
 	    print(mensagem);
-	    scan(num1);
-    	scan(num2);
+	    scan(temp);
+		entrada = split(temp, " ");
+    	num1 = int(entrada[0]);
+    	num2 = int(entrada[1]);
     };
 };
