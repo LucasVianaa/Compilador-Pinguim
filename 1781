@@ -1,0 +1,86 @@
+Declare {
+    Int i, tamanho, temp, novaPos, numeroCasos, numeroTestes, j;
+    String novoTexto, textoOriginal, tempStr, casoTeste;
+};
+
+Functions {
+	Bool checaVogal(Char l){
+		if(l == "a" || l == "e" || l == "i" || l == "o" || l == "u"){
+			return True;
+		};
+		return False;
+	};
+	String passaVogal(String texto, int numeroDeslocamento){
+		tamanho = len(texto);
+		novoTexto = texto;
+
+		for(i = 0; i < tamanho; i = i+1){
+			temp = numeroDeslocamento;
+			novaPos = i+1;
+			if(checaVogal(texto[i])){
+				while(temp > 0){
+					if(novaPos == tamanho){
+						novaPos = 0;
+					};
+					if(checaVogal(texto[novaPos])){
+						temp = temp - 1;
+					};
+					novaPos = novaPos + 1;
+				};
+				novoTexto[novaPos-1] = letra
+			};
+		};
+
+		return novoTexto;
+	};
+	String passaConsoante(String texto, int numeroDeslocamento){
+		tamanho = len(texto);
+		novoTexto = texto;
+
+		for(i = 0; i < tamanho; i = i+1){
+			temp = numeroDeslocamento;
+			novaPos = i+1;
+			if(!checaVogal(texto[i])){
+				while(temp > 0){
+					if(novaPos == tamanho){
+						novaPos = 0;
+					};
+					if(!checaVogal(texto[novaPos])){
+						temp = temp - 1;
+					};
+					novaPos = novaPos + 1;
+				};
+				novoTexto[novaPos-1] = letra
+			};
+		};
+
+		return novoTexto;
+	};
+ 
+};
+
+Main {
+	tempStr = "Caso #";
+    scan(numeroCasos);
+    for(i = 1;i <= numeroCasos; i = i+1){
+    	tempStr = concat(tempStr, i);
+    	print(tempStr);
+    	scan(textoOriginal);
+    	scan(numeroTestes);
+    	for(j = 0; j < numeroTestes; j = j+1){
+    		scan(casoTeste);
+    		casoTeste = split(casoTeste, " ");
+    		if(casoTeste[0] == "2"){
+    			print(textoOriginal);
+    		} else {
+    			if(casoTeste[0] == "1"){
+    				textoOriginal = passaConsoante(textoOriginal, int(entrada[1]))
+    			} else {
+    				if(casoTeste[0] == "0"){
+    					textoOriginal = passaVogal(textoOriginal, int(entrada[1]))
+    				};
+    			};
+    		};
+    	};
+    };
+};
