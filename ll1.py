@@ -1,8 +1,8 @@
 import re
 
 TABLE = {}
-FILE = open("gramatica", "r")
-NEWFILE = open("teste", "w")
+FILE = open("testegram", "r")
+NEWFILE = open("output", "w")
 
 
 def parse_text():
@@ -27,20 +27,19 @@ def first_rule(key):
 
 def check_for_terminal(key):
     for element in TABLE[key]:
-        if(element[0] == '<'):
+        if(element[0] == '<' and (element[1] != "=" and  element[1] != "<" and element[1] != ' ')):
             return False
     return True
 
 def second_rule(key):
     change = False
     size = len(key)
-    if '∅' in TABLE[key]:
-        return
+
     toRemove = []
     toAppend = []
 
     for element in TABLE[key]:
-        if(element[0] == '<'):
+        if(element[0] == '<' and (element[1] != "=" and  element[1] != "<" and element[1] != ' ')):
             change = True
             nextKey = ""
             for char in element:
@@ -60,7 +59,9 @@ def second_rule(key):
 
         
 def factorizantion(key):
-    return
+    repeat = {}
+    for element in TABLE[key]:
+        pass    
 
 def main():
     parse_text()
