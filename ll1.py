@@ -5,19 +5,30 @@ def parse_text():
     lines = FILE.readlines()
     currentLeftSide = 0
     for i, line in enumerate(lines):
-        line = line.replace("<Tipo> ", "<Tipo>`SP`")
         line.replace(" ", "")
-        newLine = line.split(" ::= ")
-        lhs = newLine[0]
+        newLine = line.split("::= ")
+        lhs = newLine[0].replace(" ", "")
         rhs = newLine[1].replace("\n", "")
-        if rhs[0:9] = "<Tipo> <I"
+
         TABLE[lhs] = []
         for attr in rhs.split(" | "):
             TABLE[lhs].append(attr)
 
+def first_rule(key):
+	size = len(key)
+	for element in TABLE[key]:
+		if(key == element[0:size]):
+			print("found one")
+
+def second_rule(key):
+	print("TODO")	
+
+def factorizantion(key):
+	print("TODO")
+
 def main():
     parse_text()
     for key in TABLE:
-        print(TABLE[key])
+        first_rule(key)
 
 main()
