@@ -1,5 +1,9 @@
+import re
+
 TABLE = {}
 FILE = open("gramatica", "r")
+NEWFILE = open("teste", "w")
+
 
 def parse_text():
     lines = FILE.readlines()
@@ -14,21 +18,66 @@ def parse_text():
         for attr in rhs.split(" | "):
             TABLE[lhs].append(attr)
 
+
 def first_rule(key):
-	size = len(key)
-	for element in TABLE[key]:
-		if(key == element[0:size]):
-			print("found one")
+    size = len(key)
+    for element in TABLE[key]:
+        if(key == element[0:size]):
+            print("what")
+
+def check_for_terminal(key):
+    for element in TABLE[key]:
+        if(element[0] == '<'):
+            return False
+    return True
 
 def second_rule(key):
-	print("TODO")	
+    change = False
+    size = len(key)
+    if '∅' in TABLE[key]:
+        return
+    toRemove = []
+    toAppend = []
 
+    for element in TABLE[key]:
+        if(element[0] == '<'):
+            change = True
+            nextKey = ""
+            for char in element:
+                nextKey += char
+                if char == '>':
+                    break
+            if check_for_terminal(nextKey):
+                toRemove.append(element)
+                for appended in TABLE[nextKey]:
+                    toAppend.append(appended + element[element.find(">")+1:])
+
+    for item in toRemove:
+        TABLE[key].remove(item)
+    for item in toAppend:
+        TABLE[key].append(item)
+    return change
+
+        
 def factorizantion(key):
-	print("TODO")
+    return
 
 def main():
     parse_text()
+    stop = True
+    while stop == True:
+        for key in TABLE:
+            first_rule(key)
+        for key in TABLE:
+            factorizantion(key)
+        for key in TABLE:
+            if not second_rule(key):
+                stop = False
+            else:
+                stop = True
+
     for key in TABLE:
-        first_rule(key)
+        NEWFILE.write(key + " ::= " + " | ".join(x for x in TABLE[key]) + "\n")
+        
 
 main()
