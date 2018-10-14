@@ -1,4 +1,4 @@
-<Programa> ::= Declare{<Lista-Declarações>}; Functions{<Lista-Funções>}; Main{Lista-Instruções};
+<Programa> ::= Declare{<Lista-Declarações>}; Functions{<Lista-Funções>}; Main{<Lista-Instruções>};
 <Lista-Instruções> ::= <Instrução> <Lista-Instruções> | ∅
 <Lista-Funções> ::= <Função><Lista-Funções> | ∅
 <Lista-Declarações> ::= <Declaração> <Lista-Declarações> |  ∅
