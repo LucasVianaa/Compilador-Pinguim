@@ -18,7 +18,8 @@
 <Fim-Termo-Lógico> ::= ∗ <Prioridade-Baixa><Matemática-Prioridade-Baixa><Termo-Lógico-Mat> | / <Prioridade-Baixa><Matemática-Prioridade-Baixa><Termo-Lógico-Mat> | % <Prioridade-Baixa><Matemática-Prioridade-Baixa><Termo-Lógico-Mat> | + <Matemática><Termo-Lógico-Mat> | − <Matemática><Termo-Lógico-Mat> | == <Termo-Lógico> | != <Termo-Lógico> | >= <Termo-Lógico> | <= <Termo-Lógico> | > <Termo-Lógico> | < <Termo-Lógico> | ∅
 <Termo-Lógico-Texto> ::= == <Termo-Lógico> | ∅
 <Termo-Lógico-Mat> ::= == <Termo-Lógico> | != <Termo-Lógico> | >= <Termo-Lógico> | <= <Termo-Lógico> | > <Termo-Lógico> | < <Termo-Lógico> | ∅
-<Texto> ::= [A-z`SP`0-9?!+-/*=:[]]<Texto> | [A-z`SP`0-9?!+-/*=:[]]
+<Texto> ::= [A-z`SP`0-9?!+-/*=:[]]<Barra-Texto>
+<Barra-Texto> ::= [A-z`SP`0-9?!+-/*=:[]]<Barra-Texto> | ∅
 <Matemática> ::= (<Expressão>)<Fim-Mat> | !<Expressão><Fim-Mat> | [A-z]<Barra-Id><Prioridade-Iden><Fim-Mat> | [0-9]<Barra-Lista-Dígitos><Número-Branch><Fim-Mat>
 <Fim-Mat> ::= ∗ <Prioridade-Baixa><Matemática-Prioridade-Baixa> | / <Prioridade-Baixa><Matemática-Prioridade-Baixa> | % <Prioridade-Baixa><Matemática-Prioridade-Baixa> | + <Matemática> | − <Matemática> | ∅
 <Prioridade-Baixa> ::= (<Expressão>)<Prioridade-Baixa-Alta>  | !<Expressão><Prioridade-Baixa-Alta>  | [A-z]<Barra-Id><Prioridade-Iden><Prioridade-Baixa-Alta> | [0-9]<Barra-Lista-Dígitos><Número-Branch><Prioridade-Baixa-Alta>

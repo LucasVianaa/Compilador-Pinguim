@@ -7,9 +7,6 @@
 #include "ResultType.h"
 using namespace std;
 
-
-// Trim functions (in place and copying)
-
 ResultType trim(string text, int line, int column){
     int i = 0;
     int l = line;
@@ -29,8 +26,12 @@ ResultType trim(string text, int line, int column){
     }
     return ResultType(true, "", l, c);
 }
-bool not_letter_or_number(char ch){
-    return (!isalpha(ch) && !isdigit(ch));
+
+bool istext(char ch){
+    //[A-z`SP`0-9?!+-/*=:[]]
+    return (isalpha(ch) || isdigit(ch) || ch == ' ' || ch == '?' ||
+            ch == '!' ||ch == '+' || ch == '-' || ch == '/' || ch == '*' || 
+            ch == '=' || ch == ':' || ch == '[' || ch == ']');
 }
 ResultType bloco_instrucoes(string text_original, int l, int c){
     return ResultType(true, text_original, l, c);
@@ -41,6 +42,7 @@ ResultType bloco_funcoes(string text_original, int l, int c){
 ResultType bloco_declaracoes(string text_original, int l, int c){
     return ResultType(true, text_original, l, c);
 }
+
 
 ResultType programa(string text_original, int l, int c){
     ResultType trimmed = trim(text_original, l, c);

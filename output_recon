@@ -1,0 +1,1742 @@
+ResultType programa(string text_original, int line, int column){
+    ResultType trimmed = trim(text_original, l, c);
+    ResultType result(true, trimmed.getText(), trimmed.getLine(), trimmed.getColumn());
+    string text = trimmed.getText(); int line = trimmed.getLine(); int column = trimmed.getColumn();
+    if(text.length() > 8 && str.substr(0, 8) == "Declare{"){
+        result = lista_declarações(text.substr(8), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+        trimmed = trim(result.getText(), result.getLine(), result.getColumn());
+                text = trimmed.getText(); line = trimmed.getLine(); column = trimmed.getColumn();
+    }
+    if(text.length() > 12 && str.substr(0, 12) == "};Functions{"){
+        result = lista_funções(text.substr(12), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+        trimmed = trim(result.getText(), result.getLine(), result.getColumn());
+                text = trimmed.getText(); line = trimmed.getLine(); column = trimmed.getColumn();
+    }
+    if(text.length() > 7 && str.substr(0, 7) == "};Main{"){
+        result = lista_instruções(text.substr(7), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+        trimmed = trim(result.getText(), result.getLine(), result.getColumn());
+                text = trimmed.getText(); line = trimmed.getLine(); column = trimmed.getColumn();
+    }
+    if(text.length() > 2 && str.substr(0, 2) == "};"){
+        result = (text.substr(2), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+    }
+}
+ResultType lista_instruções(string text_original, int line, int column){
+    ResultType trimmed = trim(text_original, l, c);
+    ResultType result(true, trimmed.getText(), trimmed.getLine(), trimmed.getColumn());
+    string text = trimmed.getText(); int line = trimmed.getLine(); int column = trimmed.getColumn();
+    return ResultType(true, text, l, c); 
+    if(text.length() > 7 && str.substr(0, 7) == "return "){
+        result = identificador_expressão(text.substr(7), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+        trimmed = trim(result.getText(), result.getLine(), result.getColumn());
+                text = trimmed.getText(); line = trimmed.getLine(); column = trimmed.getColumn();
+    }
+    if(text.length() > 1 && str.substr(0, 1) == ";"){
+        result = lista_instruções(text.substr(1), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+    }
+    if(text.length() > 3 && str.substr(0, 3) == "if("){
+        result = expressão(text.substr(3), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+        trimmed = trim(result.getText(), result.getLine(), result.getColumn());
+                text = trimmed.getText(); line = trimmed.getLine(); column = trimmed.getColumn();
+    }
+    if(text.length() > 1 && str.substr(0, 1) == ")"){
+        result = bloco(text.substr(1), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+        trimmed = trim(result.getText(), result.getLine(), result.getColumn());
+                text = trimmed.getText(); line = trimmed.getLine(); column = trimmed.getColumn();
+    }
+        return se_senão(text.substr(0), line, column);
+        trimmed = trim(result.getText(), result.getLine(), result.getColumn());
+                text = trimmed.getText(); line = trimmed.getLine(); column = trimmed.getColumn();
+    }
+    if(text.length() > 1 && str.substr(0, 1) == ";"){
+        result = lista_instruções(text.substr(1), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+    }
+    if(text.length() > 6 && str.substr(0, 6) == "while("){
+        result = expressão(text.substr(6), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+        trimmed = trim(result.getText(), result.getLine(), result.getColumn());
+                text = trimmed.getText(); line = trimmed.getLine(); column = trimmed.getColumn();
+    }
+    if(text.length() > 1 && str.substr(0, 1) == ")"){
+        result = bloco(text.substr(1), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+        trimmed = trim(result.getText(), result.getLine(), result.getColumn());
+                text = trimmed.getText(); line = trimmed.getLine(); column = trimmed.getColumn();
+    }
+    if(text.length() > 1 && str.substr(0, 1) == ";"){
+        result = lista_instruções(text.substr(1), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+    }
+    if(text.length() > 4 && str.substr(0, 4) == "for("){
+        result = atribuição(text.substr(4), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+        trimmed = trim(result.getText(), result.getLine(), result.getColumn());
+                text = trimmed.getText(); line = trimmed.getLine(); column = trimmed.getColumn();
+    }
+    if(text.length() > 1 && str.substr(0, 1) == ";"){
+        result = expressão(text.substr(1), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+        trimmed = trim(result.getText(), result.getLine(), result.getColumn());
+                text = trimmed.getText(); line = trimmed.getLine(); column = trimmed.getColumn();
+    }
+    if(text.length() > 1 && str.substr(0, 1) == ";"){
+        result = atribuição(text.substr(1), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+        trimmed = trim(result.getText(), result.getLine(), result.getColumn());
+                text = trimmed.getText(); line = trimmed.getLine(); column = trimmed.getColumn();
+    }
+    if(text.length() > 1 && str.substr(0, 1) == ")"){
+        result = bloco(text.substr(1), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+        trimmed = trim(result.getText(), result.getLine(), result.getColumn());
+                text = trimmed.getText(); line = trimmed.getLine(); column = trimmed.getColumn();
+    }
+    if(text.length() > 1 && str.substr(0, 1) == ";"){
+        result = lista_instruções(text.substr(1), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+    }
+    if(text.length() > 1 && isalpha(str[0])){
+        result = barra_id(text.substr(5), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+        trimmed = trim(result.getText(), result.getLine(), result.getColumn());
+                text = trimmed.getText(); line = trimmed.getLine(); column = trimmed.getColumn();
+    }
+        return instrução_iden(text.substr(0), line, column);
+        trimmed = trim(result.getText(), result.getLine(), result.getColumn());
+                text = trimmed.getText(); line = trimmed.getLine(); column = trimmed.getColumn();
+    }
+    if(text.length() > 1 && str.substr(0, 1) == ";"){
+        result = lista_instruções(text.substr(1), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+    }
+}
+ResultType lista_funções(string text_original, int line, int column){
+    ResultType trimmed = trim(text_original, l, c);
+    ResultType result(true, trimmed.getText(), trimmed.getLine(), trimmed.getColumn());
+    string text = trimmed.getText(); int line = trimmed.getLine(); int column = trimmed.getColumn();
+    return ResultType(true, text, l, c); 
+    if(text.length() > 6 && str.substr(0, 6) == "Float "){
+        result = identificador(text.substr(6), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+        trimmed = trim(result.getText(), result.getLine(), result.getColumn());
+                text = trimmed.getText(); line = trimmed.getLine(); column = trimmed.getColumn();
+    }
+    if(text.length() > 1 && str.substr(0, 1) == "("){
+        result = parâmetros(text.substr(1), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+        trimmed = trim(result.getText(), result.getLine(), result.getColumn());
+                text = trimmed.getText(); line = trimmed.getLine(); column = trimmed.getColumn();
+    }
+    if(text.length() > 1 && str.substr(0, 1) == ")"){
+        result = bloco(text.substr(1), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+        trimmed = trim(result.getText(), result.getLine(), result.getColumn());
+                text = trimmed.getText(); line = trimmed.getLine(); column = trimmed.getColumn();
+    }
+    if(text.length() > 1 && str.substr(0, 1) == ";"){
+        result = lista_funções(text.substr(1), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+    }
+    if(text.length() > 4 && str.substr(0, 4) == "Int "){
+        result = identificador(text.substr(4), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+        trimmed = trim(result.getText(), result.getLine(), result.getColumn());
+                text = trimmed.getText(); line = trimmed.getLine(); column = trimmed.getColumn();
+    }
+    if(text.length() > 1 && str.substr(0, 1) == "("){
+        result = parâmetros(text.substr(1), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+        trimmed = trim(result.getText(), result.getLine(), result.getColumn());
+                text = trimmed.getText(); line = trimmed.getLine(); column = trimmed.getColumn();
+    }
+    if(text.length() > 1 && str.substr(0, 1) == ")"){
+        result = bloco(text.substr(1), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+        trimmed = trim(result.getText(), result.getLine(), result.getColumn());
+                text = trimmed.getText(); line = trimmed.getLine(); column = trimmed.getColumn();
+    }
+    if(text.length() > 1 && str.substr(0, 1) == ";"){
+        result = lista_funções(text.substr(1), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+    }
+    if(text.length() > 7 && str.substr(0, 7) == "String "){
+        result = identificador(text.substr(7), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+        trimmed = trim(result.getText(), result.getLine(), result.getColumn());
+                text = trimmed.getText(); line = trimmed.getLine(); column = trimmed.getColumn();
+    }
+    if(text.length() > 1 && str.substr(0, 1) == "("){
+        result = parâmetros(text.substr(1), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+        trimmed = trim(result.getText(), result.getLine(), result.getColumn());
+                text = trimmed.getText(); line = trimmed.getLine(); column = trimmed.getColumn();
+    }
+    if(text.length() > 1 && str.substr(0, 1) == ")"){
+        result = bloco(text.substr(1), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+        trimmed = trim(result.getText(), result.getLine(), result.getColumn());
+                text = trimmed.getText(); line = trimmed.getLine(); column = trimmed.getColumn();
+    }
+    if(text.length() > 1 && str.substr(0, 1) == ";"){
+        result = lista_funções(text.substr(1), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+    }
+    if(text.length() > 5 && str.substr(0, 5) == "Char "){
+        result = identificador(text.substr(5), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+        trimmed = trim(result.getText(), result.getLine(), result.getColumn());
+                text = trimmed.getText(); line = trimmed.getLine(); column = trimmed.getColumn();
+    }
+    if(text.length() > 1 && str.substr(0, 1) == "("){
+        result = parâmetros(text.substr(1), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+        trimmed = trim(result.getText(), result.getLine(), result.getColumn());
+                text = trimmed.getText(); line = trimmed.getLine(); column = trimmed.getColumn();
+    }
+    if(text.length() > 1 && str.substr(0, 1) == ")"){
+        result = bloco(text.substr(1), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+        trimmed = trim(result.getText(), result.getLine(), result.getColumn());
+                text = trimmed.getText(); line = trimmed.getLine(); column = trimmed.getColumn();
+    }
+    if(text.length() > 1 && str.substr(0, 1) == ";"){
+        result = lista_funções(text.substr(1), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+    }
+    if(text.length() > 8 && str.substr(0, 8) == "Boolean "){
+        result = identificador(text.substr(8), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+        trimmed = trim(result.getText(), result.getLine(), result.getColumn());
+                text = trimmed.getText(); line = trimmed.getLine(); column = trimmed.getColumn();
+    }
+    if(text.length() > 1 && str.substr(0, 1) == "("){
+        result = parâmetros(text.substr(1), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+        trimmed = trim(result.getText(), result.getLine(), result.getColumn());
+                text = trimmed.getText(); line = trimmed.getLine(); column = trimmed.getColumn();
+    }
+    if(text.length() > 1 && str.substr(0, 1) == ")"){
+        result = bloco(text.substr(1), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+        trimmed = trim(result.getText(), result.getLine(), result.getColumn());
+                text = trimmed.getText(); line = trimmed.getLine(); column = trimmed.getColumn();
+    }
+    if(text.length() > 1 && str.substr(0, 1) == ";"){
+        result = lista_funções(text.substr(1), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+    }
+    if(text.length() > 5 && str.substr(0, 5) == "List<"){
+        result = tipo(text.substr(5), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+        trimmed = trim(result.getText(), result.getLine(), result.getColumn());
+                text = trimmed.getText(); line = trimmed.getLine(); column = trimmed.getColumn();
+    }
+    if(text.length() > 2 && str.substr(0, 2) == "> "){
+        result = identificador(text.substr(2), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+        trimmed = trim(result.getText(), result.getLine(), result.getColumn());
+                text = trimmed.getText(); line = trimmed.getLine(); column = trimmed.getColumn();
+    }
+    if(text.length() > 1 && str.substr(0, 1) == "("){
+        result = parâmetros(text.substr(1), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+        trimmed = trim(result.getText(), result.getLine(), result.getColumn());
+                text = trimmed.getText(); line = trimmed.getLine(); column = trimmed.getColumn();
+    }
+    if(text.length() > 1 && str.substr(0, 1) == ")"){
+        result = bloco(text.substr(1), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+        trimmed = trim(result.getText(), result.getLine(), result.getColumn());
+                text = trimmed.getText(); line = trimmed.getLine(); column = trimmed.getColumn();
+    }
+    if(text.length() > 1 && str.substr(0, 1) == ";"){
+        result = lista_funções(text.substr(1), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+    }
+}
+ResultType lista_declarações(string text_original, int line, int column){
+    ResultType trimmed = trim(text_original, l, c);
+    ResultType result(true, trimmed.getText(), trimmed.getLine(), trimmed.getColumn());
+    string text = trimmed.getText(); int line = trimmed.getLine(); int column = trimmed.getColumn();
+    return ResultType(true, text, l, c); 
+    if(text.length() > 6 && str.substr(0, 6) == "Float "){
+        result = lista_identificadores(text.substr(6), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+        trimmed = trim(result.getText(), result.getLine(), result.getColumn());
+                text = trimmed.getText(); line = trimmed.getLine(); column = trimmed.getColumn();
+    }
+    if(text.length() > 1 && str.substr(0, 1) == ";"){
+        result = lista_declarações(text.substr(1), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+    }
+    if(text.length() > 4 && str.substr(0, 4) == "Int "){
+        result = lista_identificadores(text.substr(4), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+        trimmed = trim(result.getText(), result.getLine(), result.getColumn());
+                text = trimmed.getText(); line = trimmed.getLine(); column = trimmed.getColumn();
+    }
+    if(text.length() > 1 && str.substr(0, 1) == ";"){
+        result = lista_declarações(text.substr(1), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+    }
+    if(text.length() > 7 && str.substr(0, 7) == "String "){
+        result = lista_identificadores(text.substr(7), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+        trimmed = trim(result.getText(), result.getLine(), result.getColumn());
+                text = trimmed.getText(); line = trimmed.getLine(); column = trimmed.getColumn();
+    }
+    if(text.length() > 1 && str.substr(0, 1) == ";"){
+        result = lista_declarações(text.substr(1), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+    }
+    if(text.length() > 5 && str.substr(0, 5) == "Char "){
+        result = lista_identificadores(text.substr(5), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+        trimmed = trim(result.getText(), result.getLine(), result.getColumn());
+                text = trimmed.getText(); line = trimmed.getLine(); column = trimmed.getColumn();
+    }
+    if(text.length() > 1 && str.substr(0, 1) == ";"){
+        result = lista_declarações(text.substr(1), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+    }
+    if(text.length() > 8 && str.substr(0, 8) == "Boolean "){
+        result = lista_identificadores(text.substr(8), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+        trimmed = trim(result.getText(), result.getLine(), result.getColumn());
+                text = trimmed.getText(); line = trimmed.getLine(); column = trimmed.getColumn();
+    }
+    if(text.length() > 1 && str.substr(0, 1) == ";"){
+        result = lista_declarações(text.substr(1), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+    }
+    if(text.length() > 5 && str.substr(0, 5) == "List<"){
+        result = tipo(text.substr(5), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+        trimmed = trim(result.getText(), result.getLine(), result.getColumn());
+                text = trimmed.getText(); line = trimmed.getLine(); column = trimmed.getColumn();
+    }
+    if(text.length() > 2 && str.substr(0, 2) == "> "){
+        result = lista_identificadores(text.substr(2), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+        trimmed = trim(result.getText(), result.getLine(), result.getColumn());
+                text = trimmed.getText(); line = trimmed.getLine(); column = trimmed.getColumn();
+    }
+    if(text.length() > 1 && str.substr(0, 1) == ";"){
+        result = lista_declarações(text.substr(1), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+    }
+}
+ResultType bloco(string text_original, int line, int column){
+    ResultType trimmed = trim(text_original, l, c);
+    ResultType result(true, trimmed.getText(), trimmed.getLine(), trimmed.getColumn());
+    string text = trimmed.getText(); int line = trimmed.getLine(); int column = trimmed.getColumn();
+    if(text.length() > 1 && str.substr(0, 1) == "{"){
+        result = lista_instruções(text.substr(1), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+        trimmed = trim(result.getText(), result.getLine(), result.getColumn());
+                text = trimmed.getText(); line = trimmed.getLine(); column = trimmed.getColumn();
+    }
+    if(text.length() > 1 && str.substr(0, 1) == "}"){
+        result = (text.substr(1), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+    }
+}
+ResultType instrução_iden(string text_original, int line, int column){
+    ResultType trimmed = trim(text_original, l, c);
+    ResultType result(true, trimmed.getText(), trimmed.getLine(), trimmed.getColumn());
+    string text = trimmed.getText(); int line = trimmed.getLine(); int column = trimmed.getColumn();
+    if(text.length() > 1 && str.substr(0, 1) == "("){
+        result = argumentos(text.substr(1), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+        trimmed = trim(result.getText(), result.getLine(), result.getColumn());
+                text = trimmed.getText(); line = trimmed.getLine(); column = trimmed.getColumn();
+    }
+    if(text.length() > 1 && str.substr(0, 1) == ")"){
+        result = (text.substr(1), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+    }
+    if(text.length() > 1 && str.substr(0, 1) == "["){
+        result = expressão(text.substr(1), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+        trimmed = trim(result.getText(), result.getLine(), result.getColumn());
+                text = trimmed.getText(); line = trimmed.getLine(); column = trimmed.getColumn();
+    }
+    if(text.length() > 1 && str.substr(0, 1) == "]"){
+        result = atribuição_valores(text.substr(1), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+    }
+    if(text.length() > 1 && str.substr(0, 1) == "="){
+        result = matemática(text.substr(1), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+    }
+    if(text.length() > 2 && str.substr(0, 2) == "=“"){
+        result = texto(text.substr(2), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+        trimmed = trim(result.getText(), result.getLine(), result.getColumn());
+                text = trimmed.getText(); line = trimmed.getLine(); column = trimmed.getColumn();
+    }
+    if(text.length() > 1 && str.substr(0, 1) == "”"){
+        result = (text.substr(1), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+    }
+    if(text.length() > 1 && str.substr(0, 1) == "="){
+        result = bool(text.substr(1), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+    }
+}
+ResultType se_senão(string text_original, int line, int column){
+    ResultType trimmed = trim(text_original, l, c);
+    ResultType result(true, trimmed.getText(), trimmed.getLine(), trimmed.getColumn());
+    string text = trimmed.getText(); int line = trimmed.getLine(); int column = trimmed.getColumn();
+    if(text.length() > 4 && str.substr(0, 4) == "else"){
+        result = bloco(text.substr(4), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+    }
+    return ResultType(true, text, l, c); 
+}
+ResultType tipo(string text_original, int line, int column){
+    ResultType trimmed = trim(text_original, l, c);
+    ResultType result(true, trimmed.getText(), trimmed.getLine(), trimmed.getColumn());
+    string text = trimmed.getText(); int line = trimmed.getLine(); int column = trimmed.getColumn();
+    if(text.length() > 5 && str.substr(0, 5) == "Float"){
+        result = (text.substr(5), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+    }
+    if(text.length() > 3 && str.substr(0, 3) == "Int"){
+        result = (text.substr(3), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+    }
+    if(text.length() > 6 && str.substr(0, 6) == "String"){
+        result = (text.substr(6), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+    }
+    if(text.length() > 4 && str.substr(0, 4) == "Char"){
+        result = (text.substr(4), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+    }
+    if(text.length() > 7 && str.substr(0, 7) == "Boolean"){
+        result = (text.substr(7), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+    }
+    if(text.length() > 5 && str.substr(0, 5) == "List<"){
+        result = tipo(text.substr(5), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+        trimmed = trim(result.getText(), result.getLine(), result.getColumn());
+                text = trimmed.getText(); line = trimmed.getLine(); column = trimmed.getColumn();
+    }
+    if(text.length() > 1 && str.substr(0, 1) == ">"){
+        result = (text.substr(1), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+    }
+}
+ResultType parâmetros(string text_original, int line, int column){
+    ResultType trimmed = trim(text_original, l, c);
+    ResultType result(true, trimmed.getText(), trimmed.getLine(), trimmed.getColumn());
+    string text = trimmed.getText(); int line = trimmed.getLine(); int column = trimmed.getColumn();
+    if(text.length() > 6 && str.substr(0, 6) == "Float "){
+        result = identificador(text.substr(6), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+        trimmed = trim(result.getText(), result.getLine(), result.getColumn());
+                text = trimmed.getText(); line = trimmed.getLine(); column = trimmed.getColumn();
+    }
+        return lista_parâmetros(text.substr(0), line, column);
+    }
+    if(text.length() > 4 && str.substr(0, 4) == "Int "){
+        result = identificador(text.substr(4), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+        trimmed = trim(result.getText(), result.getLine(), result.getColumn());
+                text = trimmed.getText(); line = trimmed.getLine(); column = trimmed.getColumn();
+    }
+        return lista_parâmetros(text.substr(0), line, column);
+    }
+    if(text.length() > 7 && str.substr(0, 7) == "String "){
+        result = identificador(text.substr(7), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+        trimmed = trim(result.getText(), result.getLine(), result.getColumn());
+                text = trimmed.getText(); line = trimmed.getLine(); column = trimmed.getColumn();
+    }
+        return lista_parâmetros(text.substr(0), line, column);
+    }
+    if(text.length() > 5 && str.substr(0, 5) == "Char "){
+        result = identificador(text.substr(5), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+        trimmed = trim(result.getText(), result.getLine(), result.getColumn());
+                text = trimmed.getText(); line = trimmed.getLine(); column = trimmed.getColumn();
+    }
+        return lista_parâmetros(text.substr(0), line, column);
+    }
+    if(text.length() > 8 && str.substr(0, 8) == "Boolean "){
+        result = identificador(text.substr(8), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+        trimmed = trim(result.getText(), result.getLine(), result.getColumn());
+                text = trimmed.getText(); line = trimmed.getLine(); column = trimmed.getColumn();
+    }
+        return lista_parâmetros(text.substr(0), line, column);
+    }
+    if(text.length() > 5 && str.substr(0, 5) == "List<"){
+        result = tipo(text.substr(5), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+        trimmed = trim(result.getText(), result.getLine(), result.getColumn());
+                text = trimmed.getText(); line = trimmed.getLine(); column = trimmed.getColumn();
+    }
+    if(text.length() > 2 && str.substr(0, 2) == "> "){
+        result = identificador(text.substr(2), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+        trimmed = trim(result.getText(), result.getLine(), result.getColumn());
+                text = trimmed.getText(); line = trimmed.getLine(); column = trimmed.getColumn();
+    }
+        return lista_parâmetros(text.substr(0), line, column);
+    }
+}
+ResultType lista_parâmetros(string text_original, int line, int column){
+    ResultType trimmed = trim(text_original, l, c);
+    ResultType result(true, trimmed.getText(), trimmed.getLine(), trimmed.getColumn());
+    string text = trimmed.getText(); int line = trimmed.getLine(); int column = trimmed.getColumn();
+    if(text.length() > 1 && str.substr(0, 1) == ","){
+        result = parâmetros(text.substr(1), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+    }
+    return ResultType(true, text, l, c); 
+}
+ResultType atribuição(string text_original, int line, int column){
+    ResultType trimmed = trim(text_original, l, c);
+    ResultType result(true, trimmed.getText(), trimmed.getLine(), trimmed.getColumn());
+    string text = trimmed.getText(); int line = trimmed.getLine(); int column = trimmed.getColumn();
+    if(text.length() > 1 && isalpha(str[0])){
+        result = barra_id(text.substr(5), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+        trimmed = trim(result.getText(), result.getLine(), result.getColumn());
+                text = trimmed.getText(); line = trimmed.getLine(); column = trimmed.getColumn();
+    }
+        return atribuição_vetor(text.substr(0), line, column);
+        trimmed = trim(result.getText(), result.getLine(), result.getColumn());
+                text = trimmed.getText(); line = trimmed.getLine(); column = trimmed.getColumn();
+    }
+        return atribuição_valores(text.substr(0), line, column);
+        trimmed = trim(result.getText(), result.getLine(), result.getColumn());
+                text = trimmed.getText(); line = trimmed.getLine(); column = trimmed.getColumn();
+    }
+    if(text.length() > 1 && str.substr(0, 1) == ";"){
+        result = (text.substr(1), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+    }
+}
+ResultType atribuição_vetor(string text_original, int line, int column){
+    ResultType trimmed = trim(text_original, l, c);
+    ResultType result(true, trimmed.getText(), trimmed.getLine(), trimmed.getColumn());
+    string text = trimmed.getText(); int line = trimmed.getLine(); int column = trimmed.getColumn();
+    if(text.length() > 1 && str.substr(0, 1) == "["){
+        result = expressão(text.substr(1), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+        trimmed = trim(result.getText(), result.getLine(), result.getColumn());
+                text = trimmed.getText(); line = trimmed.getLine(); column = trimmed.getColumn();
+    }
+    if(text.length() > 1 && str.substr(0, 1) == "]"){
+        result = (text.substr(1), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+    }
+    return ResultType(true, text, l, c); 
+}
+ResultType atribuição_valores(string text_original, int line, int column){
+    ResultType trimmed = trim(text_original, l, c);
+    ResultType result(true, trimmed.getText(), trimmed.getLine(), trimmed.getColumn());
+    string text = trimmed.getText(); int line = trimmed.getLine(); int column = trimmed.getColumn();
+    if(text.length() > 1 && str.substr(0, 1) == "="){
+        result = matemática(text.substr(1), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+    }
+    if(text.length() > 2 && str.substr(0, 2) == "=“"){
+        result = texto(text.substr(2), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+        trimmed = trim(result.getText(), result.getLine(), result.getColumn());
+                text = trimmed.getText(); line = trimmed.getLine(); column = trimmed.getColumn();
+    }
+    if(text.length() > 1 && str.substr(0, 1) == "”"){
+        result = (text.substr(1), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+    }
+    if(text.length() > 1 && str.substr(0, 1) == "="){
+        result = bool(text.substr(1), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+    }
+}
+ResultType bool(string text_original, int line, int column){
+    ResultType trimmed = trim(text_original, l, c);
+    ResultType result(true, trimmed.getText(), trimmed.getLine(), trimmed.getColumn());
+    string text = trimmed.getText(); int line = trimmed.getLine(); int column = trimmed.getColumn();
+    if(text.length() > 4 && str.substr(0, 4) == "True"){
+        result = (text.substr(4), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+    }
+    if(text.length() > 5 && str.substr(0, 5) == "False"){
+        result = (text.substr(5), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+    }
+}
+ResultType expressão(string text_original, int line, int column){
+    ResultType trimmed = trim(text_original, l, c);
+    ResultType result(true, trimmed.getText(), trimmed.getLine(), trimmed.getColumn());
+    string text = trimmed.getText(); int line = trimmed.getLine(); int column = trimmed.getColumn();
+    if(text.length() > 1 && str.substr(0, 1) == "“"){
+        result = texto(text.substr(1), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+        trimmed = trim(result.getText(), result.getLine(), result.getColumn());
+                text = trimmed.getText(); line = trimmed.getLine(); column = trimmed.getColumn();
+    }
+    if(text.length() > 1 && str.substr(0, 1) == "”"){
+        result = termo_lógico_texto(text.substr(1), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+        trimmed = trim(result.getText(), result.getLine(), result.getColumn());
+                text = trimmed.getText(); line = trimmed.getLine(); column = trimmed.getColumn();
+    }
+        return expressão_termo_lógico(text.substr(0), line, column);
+    }
+    if(text.length() > 1 && str.substr(0, 1) == "("){
+        result = expressão(text.substr(1), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+        trimmed = trim(result.getText(), result.getLine(), result.getColumn());
+                text = trimmed.getText(); line = trimmed.getLine(); column = trimmed.getColumn();
+    }
+    if(text.length() > 1 && str.substr(0, 1) == ")"){
+        result = mid_args(text.substr(1), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+    }
+    if(text.length() > 1 && str.substr(0, 1) == "!"){
+        result = expressão(text.substr(1), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+        trimmed = trim(result.getText(), result.getLine(), result.getColumn());
+                text = trimmed.getText(); line = trimmed.getLine(); column = trimmed.getColumn();
+    }
+        return mid_args(text.substr(0), line, column);
+    }
+    if(text.length() > 1 && isalpha(str[0])){
+        result = barra_id(text.substr(5), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+        trimmed = trim(result.getText(), result.getLine(), result.getColumn());
+                text = trimmed.getText(); line = trimmed.getLine(); column = trimmed.getColumn();
+    }
+        return prioridade_iden(text.substr(0), line, column);
+        trimmed = trim(result.getText(), result.getLine(), result.getColumn());
+                text = trimmed.getText(); line = trimmed.getLine(); column = trimmed.getColumn();
+    }
+        return mid_args(text.substr(0), line, column);
+    }
+    if(text.length() > 1 && isdigit(str[0])){
+        result = barra_lista_dígitos(text.substr(5), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+        trimmed = trim(result.getText(), result.getLine(), result.getColumn());
+                text = trimmed.getText(); line = trimmed.getLine(); column = trimmed.getColumn();
+    }
+        return número_branch(text.substr(0), line, column);
+        trimmed = trim(result.getText(), result.getLine(), result.getColumn());
+                text = trimmed.getText(); line = trimmed.getLine(); column = trimmed.getColumn();
+    }
+        return mid_args(text.substr(0), line, column);
+    }
+}
+ResultType expressão_termo_lógico(string text_original, int line, int column){
+    ResultType trimmed = trim(text_original, l, c);
+    ResultType result(true, trimmed.getText(), trimmed.getLine(), trimmed.getColumn());
+    string text = trimmed.getText(); int line = trimmed.getLine(); int column = trimmed.getColumn();
+    if(text.length() > 4 && str.substr(0, 4) == " && "){
+        result = expressão(text.substr(4), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+    }
+    if(text.length() > 4 && str.substr(0, 4) == " || "){
+        result = expressão(text.substr(4), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+    }
+    return ResultType(true, text, l, c); 
+}
+ResultType termo_lógico(string text_original, int line, int column){
+    ResultType trimmed = trim(text_original, l, c);
+    ResultType result(true, trimmed.getText(), trimmed.getLine(), trimmed.getColumn());
+    string text = trimmed.getText(); int line = trimmed.getLine(); int column = trimmed.getColumn();
+    if(text.length() > 1 && str.substr(0, 1) == "“"){
+        result = texto(text.substr(1), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+        trimmed = trim(result.getText(), result.getLine(), result.getColumn());
+                text = trimmed.getText(); line = trimmed.getLine(); column = trimmed.getColumn();
+    }
+    if(text.length() > 1 && str.substr(0, 1) == "”"){
+        result = termo_lógico_texto(text.substr(1), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+    }
+    if(text.length() > 1 && str.substr(0, 1) == "("){
+        result = expressão(text.substr(1), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+        trimmed = trim(result.getText(), result.getLine(), result.getColumn());
+                text = trimmed.getText(); line = trimmed.getLine(); column = trimmed.getColumn();
+    }
+    if(text.length() > 1 && str.substr(0, 1) == ")"){
+        result = fim_termo_lógico(text.substr(1), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+    }
+    if(text.length() > 1 && str.substr(0, 1) == "!"){
+        result = expressão(text.substr(1), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+        trimmed = trim(result.getText(), result.getLine(), result.getColumn());
+                text = trimmed.getText(); line = trimmed.getLine(); column = trimmed.getColumn();
+    }
+        return fim_termo_lógico(text.substr(0), line, column);
+    }
+    if(text.length() > 1 && isalpha(str[0])){
+        result = barra_id(text.substr(5), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+        trimmed = trim(result.getText(), result.getLine(), result.getColumn());
+                text = trimmed.getText(); line = trimmed.getLine(); column = trimmed.getColumn();
+    }
+        return prioridade_iden(text.substr(0), line, column);
+        trimmed = trim(result.getText(), result.getLine(), result.getColumn());
+                text = trimmed.getText(); line = trimmed.getLine(); column = trimmed.getColumn();
+    }
+        return fim_termo_lógico(text.substr(0), line, column);
+    }
+    if(text.length() > 1 && isdigit(str[0])){
+        result = barra_lista_dígitos(text.substr(5), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+        trimmed = trim(result.getText(), result.getLine(), result.getColumn());
+                text = trimmed.getText(); line = trimmed.getLine(); column = trimmed.getColumn();
+    }
+        return número_branch(text.substr(0), line, column);
+        trimmed = trim(result.getText(), result.getLine(), result.getColumn());
+                text = trimmed.getText(); line = trimmed.getLine(); column = trimmed.getColumn();
+    }
+        return fim_termo_lógico(text.substr(0), line, column);
+    }
+}
+ResultType fim_termo_lógico(string text_original, int line, int column){
+    ResultType trimmed = trim(text_original, l, c);
+    ResultType result(true, trimmed.getText(), trimmed.getLine(), trimmed.getColumn());
+    string text = trimmed.getText(); int line = trimmed.getLine(); int column = trimmed.getColumn();
+    if(text.length() > 1 && str.substr(0, 1) == "∗"){
+        result = prioridade_baixa(text.substr(1), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+        trimmed = trim(result.getText(), result.getLine(), result.getColumn());
+                text = trimmed.getText(); line = trimmed.getLine(); column = trimmed.getColumn();
+    }
+        return matemática_prioridade_baixa(text.substr(0), line, column);
+        trimmed = trim(result.getText(), result.getLine(), result.getColumn());
+                text = trimmed.getText(); line = trimmed.getLine(); column = trimmed.getColumn();
+    }
+        return termo_lógico_mat(text.substr(0), line, column);
+    }
+    if(text.length() > 1 && str.substr(0, 1) == "/"){
+        result = prioridade_baixa(text.substr(1), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+        trimmed = trim(result.getText(), result.getLine(), result.getColumn());
+                text = trimmed.getText(); line = trimmed.getLine(); column = trimmed.getColumn();
+    }
+        return matemática_prioridade_baixa(text.substr(0), line, column);
+        trimmed = trim(result.getText(), result.getLine(), result.getColumn());
+                text = trimmed.getText(); line = trimmed.getLine(); column = trimmed.getColumn();
+    }
+        return termo_lógico_mat(text.substr(0), line, column);
+    }
+    if(text.length() > 1 && str.substr(0, 1) == "%"){
+        result = prioridade_baixa(text.substr(1), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+        trimmed = trim(result.getText(), result.getLine(), result.getColumn());
+                text = trimmed.getText(); line = trimmed.getLine(); column = trimmed.getColumn();
+    }
+        return matemática_prioridade_baixa(text.substr(0), line, column);
+        trimmed = trim(result.getText(), result.getLine(), result.getColumn());
+                text = trimmed.getText(); line = trimmed.getLine(); column = trimmed.getColumn();
+    }
+        return termo_lógico_mat(text.substr(0), line, column);
+    }
+    if(text.length() > 1 && str.substr(0, 1) == "+"){
+        result = matemática(text.substr(1), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+        trimmed = trim(result.getText(), result.getLine(), result.getColumn());
+                text = trimmed.getText(); line = trimmed.getLine(); column = trimmed.getColumn();
+    }
+        return termo_lógico_mat(text.substr(0), line, column);
+    }
+    if(text.length() > 1 && str.substr(0, 1) == "−"){
+        result = matemática(text.substr(1), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+        trimmed = trim(result.getText(), result.getLine(), result.getColumn());
+                text = trimmed.getText(); line = trimmed.getLine(); column = trimmed.getColumn();
+    }
+        return termo_lógico_mat(text.substr(0), line, column);
+    }
+    if(text.length() > 2 && str.substr(0, 2) == "=="){
+        result = termo_lógico(text.substr(2), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+    }
+    if(text.length() > 2 && str.substr(0, 2) == "!="){
+        result = termo_lógico(text.substr(2), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+    }
+    if(text.length() > 2 && str.substr(0, 2) == ">="){
+        result = termo_lógico(text.substr(2), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+    }
+    if(text.length() > 2 && str.substr(0, 2) == "<="){
+        result = termo_lógico(text.substr(2), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+    }
+    if(text.length() > 1 && str.substr(0, 1) == ">"){
+        result = termo_lógico(text.substr(1), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+    }
+    if(text.length() > 1 && str.substr(0, 1) == "<"){
+        result = termo_lógico(text.substr(1), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+    }
+    return ResultType(true, text, l, c); 
+}
+ResultType termo_lógico_texto(string text_original, int line, int column){
+    ResultType trimmed = trim(text_original, l, c);
+    ResultType result(true, trimmed.getText(), trimmed.getLine(), trimmed.getColumn());
+    string text = trimmed.getText(); int line = trimmed.getLine(); int column = trimmed.getColumn();
+    if(text.length() > 2 && str.substr(0, 2) == "=="){
+        result = termo_lógico(text.substr(2), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+    }
+    return ResultType(true, text, l, c); 
+}
+ResultType termo_lógico_mat(string text_original, int line, int column){
+    ResultType trimmed = trim(text_original, l, c);
+    ResultType result(true, trimmed.getText(), trimmed.getLine(), trimmed.getColumn());
+    string text = trimmed.getText(); int line = trimmed.getLine(); int column = trimmed.getColumn();
+    if(text.length() > 2 && str.substr(0, 2) == "=="){
+        result = termo_lógico(text.substr(2), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+    }
+    if(text.length() > 2 && str.substr(0, 2) == "!="){
+        result = termo_lógico(text.substr(2), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+    }
+    if(text.length() > 2 && str.substr(0, 2) == ">="){
+        result = termo_lógico(text.substr(2), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+    }
+    if(text.length() > 2 && str.substr(0, 2) == "<="){
+        result = termo_lógico(text.substr(2), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+    }
+    if(text.length() > 1 && str.substr(0, 1) == ">"){
+        result = termo_lógico(text.substr(1), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+    }
+    if(text.length() > 1 && str.substr(0, 1) == "<"){
+        result = termo_lógico(text.substr(1), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+    }
+    return ResultType(true, text, l, c); 
+}
+ResultType texto(string text_original, int line, int column){
+    ResultType trimmed = trim(text_original, l, c);
+    ResultType result(true, trimmed.getText(), trimmed.getLine(), trimmed.getColumn());
+    string text = trimmed.getText(); int line = trimmed.getLine(); int column = trimmed.getColumn();
+    if(text.length() > 1 && istext(str[0])){
+        result = barra_texto(text.substr(19), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+    }
+}
+ResultType barra_texto(string text_original, int line, int column){
+    ResultType trimmed = trim(text_original, l, c);
+    ResultType result(true, trimmed.getText(), trimmed.getLine(), trimmed.getColumn());
+    string text = trimmed.getText(); int line = trimmed.getLine(); int column = trimmed.getColumn();
+    if(text.length() > 1 && istext(str[0])){
+        result = barra_texto(text.substr(19), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+    }
+    return ResultType(true, text, l, c); 
+}
+ResultType matemática(string text_original, int line, int column){
+    ResultType trimmed = trim(text_original, l, c);
+    ResultType result(true, trimmed.getText(), trimmed.getLine(), trimmed.getColumn());
+    string text = trimmed.getText(); int line = trimmed.getLine(); int column = trimmed.getColumn();
+    if(text.length() > 1 && str.substr(0, 1) == "("){
+        result = expressão(text.substr(1), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+        trimmed = trim(result.getText(), result.getLine(), result.getColumn());
+                text = trimmed.getText(); line = trimmed.getLine(); column = trimmed.getColumn();
+    }
+    if(text.length() > 1 && str.substr(0, 1) == ")"){
+        result = fim_mat(text.substr(1), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+    }
+    if(text.length() > 1 && str.substr(0, 1) == "!"){
+        result = expressão(text.substr(1), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+        trimmed = trim(result.getText(), result.getLine(), result.getColumn());
+                text = trimmed.getText(); line = trimmed.getLine(); column = trimmed.getColumn();
+    }
+        return fim_mat(text.substr(0), line, column);
+    }
+    if(text.length() > 1 && isalpha(str[0])){
+        result = barra_id(text.substr(5), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+        trimmed = trim(result.getText(), result.getLine(), result.getColumn());
+                text = trimmed.getText(); line = trimmed.getLine(); column = trimmed.getColumn();
+    }
+        return prioridade_iden(text.substr(0), line, column);
+        trimmed = trim(result.getText(), result.getLine(), result.getColumn());
+                text = trimmed.getText(); line = trimmed.getLine(); column = trimmed.getColumn();
+    }
+        return fim_mat(text.substr(0), line, column);
+    }
+    if(text.length() > 1 && isdigit(str[0])){
+        result = barra_lista_dígitos(text.substr(5), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+        trimmed = trim(result.getText(), result.getLine(), result.getColumn());
+                text = trimmed.getText(); line = trimmed.getLine(); column = trimmed.getColumn();
+    }
+        return número_branch(text.substr(0), line, column);
+        trimmed = trim(result.getText(), result.getLine(), result.getColumn());
+                text = trimmed.getText(); line = trimmed.getLine(); column = trimmed.getColumn();
+    }
+        return fim_mat(text.substr(0), line, column);
+    }
+}
+ResultType fim_mat(string text_original, int line, int column){
+    ResultType trimmed = trim(text_original, l, c);
+    ResultType result(true, trimmed.getText(), trimmed.getLine(), trimmed.getColumn());
+    string text = trimmed.getText(); int line = trimmed.getLine(); int column = trimmed.getColumn();
+    if(text.length() > 1 && str.substr(0, 1) == "∗"){
+        result = prioridade_baixa(text.substr(1), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+        trimmed = trim(result.getText(), result.getLine(), result.getColumn());
+                text = trimmed.getText(); line = trimmed.getLine(); column = trimmed.getColumn();
+    }
+        return matemática_prioridade_baixa(text.substr(0), line, column);
+    }
+    if(text.length() > 1 && str.substr(0, 1) == "/"){
+        result = prioridade_baixa(text.substr(1), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+        trimmed = trim(result.getText(), result.getLine(), result.getColumn());
+                text = trimmed.getText(); line = trimmed.getLine(); column = trimmed.getColumn();
+    }
+        return matemática_prioridade_baixa(text.substr(0), line, column);
+    }
+    if(text.length() > 1 && str.substr(0, 1) == "%"){
+        result = prioridade_baixa(text.substr(1), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+        trimmed = trim(result.getText(), result.getLine(), result.getColumn());
+                text = trimmed.getText(); line = trimmed.getLine(); column = trimmed.getColumn();
+    }
+        return matemática_prioridade_baixa(text.substr(0), line, column);
+    }
+    if(text.length() > 1 && str.substr(0, 1) == "+"){
+        result = matemática(text.substr(1), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+    }
+    if(text.length() > 1 && str.substr(0, 1) == "−"){
+        result = matemática(text.substr(1), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+    }
+    return ResultType(true, text, l, c); 
+}
+ResultType prioridade_baixa(string text_original, int line, int column){
+    ResultType trimmed = trim(text_original, l, c);
+    ResultType result(true, trimmed.getText(), trimmed.getLine(), trimmed.getColumn());
+    string text = trimmed.getText(); int line = trimmed.getLine(); int column = trimmed.getColumn();
+    if(text.length() > 1 && str.substr(0, 1) == "("){
+        result = expressão(text.substr(1), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+        trimmed = trim(result.getText(), result.getLine(), result.getColumn());
+                text = trimmed.getText(); line = trimmed.getLine(); column = trimmed.getColumn();
+    }
+    if(text.length() > 1 && str.substr(0, 1) == ")"){
+        result = prioridade_baixa_alta(text.substr(1), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+    }
+    if(text.length() > 1 && str.substr(0, 1) == "!"){
+        result = expressão(text.substr(1), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+        trimmed = trim(result.getText(), result.getLine(), result.getColumn());
+                text = trimmed.getText(); line = trimmed.getLine(); column = trimmed.getColumn();
+    }
+        return prioridade_baixa_alta(text.substr(0), line, column);
+    }
+    if(text.length() > 1 && isalpha(str[0])){
+        result = barra_id(text.substr(5), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+        trimmed = trim(result.getText(), result.getLine(), result.getColumn());
+                text = trimmed.getText(); line = trimmed.getLine(); column = trimmed.getColumn();
+    }
+        return prioridade_iden(text.substr(0), line, column);
+        trimmed = trim(result.getText(), result.getLine(), result.getColumn());
+                text = trimmed.getText(); line = trimmed.getLine(); column = trimmed.getColumn();
+    }
+        return prioridade_baixa_alta(text.substr(0), line, column);
+    }
+    if(text.length() > 1 && isdigit(str[0])){
+        result = barra_lista_dígitos(text.substr(5), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+        trimmed = trim(result.getText(), result.getLine(), result.getColumn());
+                text = trimmed.getText(); line = trimmed.getLine(); column = trimmed.getColumn();
+    }
+        return número_branch(text.substr(0), line, column);
+        trimmed = trim(result.getText(), result.getLine(), result.getColumn());
+                text = trimmed.getText(); line = trimmed.getLine(); column = trimmed.getColumn();
+    }
+        return prioridade_baixa_alta(text.substr(0), line, column);
+    }
+}
+ResultType prioridade_iden(string text_original, int line, int column){
+    ResultType trimmed = trim(text_original, l, c);
+    ResultType result(true, trimmed.getText(), trimmed.getLine(), trimmed.getColumn());
+    string text = trimmed.getText(); int line = trimmed.getLine(); int column = trimmed.getColumn();
+    if(text.length() > 1 && str.substr(0, 1) == "["){
+        result = expressão(text.substr(1), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+        trimmed = trim(result.getText(), result.getLine(), result.getColumn());
+                text = trimmed.getText(); line = trimmed.getLine(); column = trimmed.getColumn();
+    }
+    if(text.length() > 1 && str.substr(0, 1) == "]"){
+        result = (text.substr(1), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+    }
+    if(text.length() > 1 && str.substr(0, 1) == "("){
+        result = argumentos(text.substr(1), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+        trimmed = trim(result.getText(), result.getLine(), result.getColumn());
+                text = trimmed.getText(); line = trimmed.getLine(); column = trimmed.getColumn();
+    }
+    if(text.length() > 1 && str.substr(0, 1) == ")"){
+        result = (text.substr(1), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+    }
+    return ResultType(true, text, l, c); 
+}
+ResultType prioridade_baixa_alta(string text_original, int line, int column){
+    ResultType trimmed = trim(text_original, l, c);
+    ResultType result(true, trimmed.getText(), trimmed.getLine(), trimmed.getColumn());
+    string text = trimmed.getText(); int line = trimmed.getLine(); int column = trimmed.getColumn();
+    if(text.length() > 1 && str.substr(0, 1) == "∗"){
+        result = prioridade_baixa(text.substr(1), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+    }
+    if(text.length() > 1 && str.substr(0, 1) == "/"){
+        result = prioridade_baixa(text.substr(1), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+    }
+    if(text.length() > 1 && str.substr(0, 1) == "%"){
+        result = prioridade_baixa(text.substr(1), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+    }
+    return ResultType(true, text, l, c); 
+}
+ResultType lista_identificadores(string text_original, int line, int column){
+    ResultType trimmed = trim(text_original, l, c);
+    ResultType result(true, trimmed.getText(), trimmed.getLine(), trimmed.getColumn());
+    string text = trimmed.getText(); int line = trimmed.getLine(); int column = trimmed.getColumn();
+    if(text.length() > 1 && isalpha(str[0])){
+        result = barra_id(text.substr(5), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+        trimmed = trim(result.getText(), result.getLine(), result.getColumn());
+                text = trimmed.getText(); line = trimmed.getLine(); column = trimmed.getColumn();
+    }
+        return lista_identificadores_mult(text.substr(0), line, column);
+    }
+}
+ResultType lista_identificadores_mult(string text_original, int line, int column){
+    ResultType trimmed = trim(text_original, l, c);
+    ResultType result(true, trimmed.getText(), trimmed.getLine(), trimmed.getColumn());
+    string text = trimmed.getText(); int line = trimmed.getLine(); int column = trimmed.getColumn();
+    if(text.length() > 1 && str.substr(0, 1) == ","){
+        result = lista_identificadores(text.substr(1), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+    }
+    return ResultType(true, text, l, c); 
+}
+ResultType identificador_expressão(string text_original, int line, int column){
+    ResultType trimmed = trim(text_original, l, c);
+    ResultType result(true, trimmed.getText(), trimmed.getLine(), trimmed.getColumn());
+    string text = trimmed.getText(); int line = trimmed.getLine(); int column = trimmed.getColumn();
+    if(text.length() > 1 && isalpha(str[0])){
+        result = barra_id(text.substr(5), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+        trimmed = trim(result.getText(), result.getLine(), result.getColumn());
+                text = trimmed.getText(); line = trimmed.getLine(); column = trimmed.getColumn();
+    }
+        return identificador_expressão_vetor(text.substr(0), line, column);
+    }
+}
+ResultType identificador_expressão_vetor(string text_original, int line, int column){
+    ResultType trimmed = trim(text_original, l, c);
+    ResultType result(true, trimmed.getText(), trimmed.getLine(), trimmed.getColumn());
+    string text = trimmed.getText(); int line = trimmed.getLine(); int column = trimmed.getColumn();
+    if(text.length() > 1 && str.substr(0, 1) == "["){
+        result = expressão(text.substr(1), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+        trimmed = trim(result.getText(), result.getLine(), result.getColumn());
+                text = trimmed.getText(); line = trimmed.getLine(); column = trimmed.getColumn();
+    }
+    if(text.length() > 1 && str.substr(0, 1) == "]"){
+        result = (text.substr(1), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+    }
+    return ResultType(true, text, l, c); 
+}
+ResultType identificador(string text_original, int line, int column){
+    ResultType trimmed = trim(text_original, l, c);
+    ResultType result(true, trimmed.getText(), trimmed.getLine(), trimmed.getColumn());
+    string text = trimmed.getText(); int line = trimmed.getLine(); int column = trimmed.getColumn();
+    if(text.length() > 1 && isalpha(str[0])){
+        result = barra_id(text.substr(5), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+    }
+}
+ResultType barra_id(string text_original, int line, int column){
+    ResultType trimmed = trim(text_original, l, c);
+    ResultType result(true, trimmed.getText(), trimmed.getLine(), trimmed.getColumn());
+    string text = trimmed.getText(); int line = trimmed.getLine(); int column = trimmed.getColumn();
+    if(text.length() > 1 && isalpha(str[0])){
+        result = barra_id(text.substr(5), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+    }
+    return ResultType(true, text, l, c); 
+}
+ResultType número_branch(string text_original, int line, int column){
+    ResultType trimmed = trim(text_original, l, c);
+    ResultType result(true, trimmed.getText(), trimmed.getLine(), trimmed.getColumn());
+    string text = trimmed.getText(); int line = trimmed.getLine(); int column = trimmed.getColumn();
+    if(text.length() > 1 && str.substr(0, 1) == "."){
+        result = lista_dígitos(text.substr(1), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+    }
+    return ResultType(true, text, l, c); 
+}
+ResultType lista_dígitos(string text_original, int line, int column){
+    ResultType trimmed = trim(text_original, l, c);
+    ResultType result(true, trimmed.getText(), trimmed.getLine(), trimmed.getColumn());
+    string text = trimmed.getText(); int line = trimmed.getLine(); int column = trimmed.getColumn();
+    if(text.length() > 1 && isdigit(str[0])){
+        result = barra_lista_dígitos(text.substr(5), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+    }
+}
+ResultType barra_lista_dígitos(string text_original, int line, int column){
+    ResultType trimmed = trim(text_original, l, c);
+    ResultType result(true, trimmed.getText(), trimmed.getLine(), trimmed.getColumn());
+    string text = trimmed.getText(); int line = trimmed.getLine(); int column = trimmed.getColumn();
+    if(text.length() > 1 && isdigit(str[0])){
+        result = barra_lista_dígitos(text.substr(5), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+    }
+    return ResultType(true, text, l, c); 
+}
+ResultType argumentos(string text_original, int line, int column){
+    ResultType trimmed = trim(text_original, l, c);
+    ResultType result(true, trimmed.getText(), trimmed.getLine(), trimmed.getColumn());
+    string text = trimmed.getText(); int line = trimmed.getLine(); int column = trimmed.getColumn();
+    if(text.length() > 1 && str.substr(0, 1) == "“"){
+        result = texto(text.substr(1), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+        trimmed = trim(result.getText(), result.getLine(), result.getColumn());
+                text = trimmed.getText(); line = trimmed.getLine(); column = trimmed.getColumn();
+    }
+    if(text.length() > 1 && str.substr(0, 1) == "”"){
+        result = args_texto(text.substr(1), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+        trimmed = trim(result.getText(), result.getLine(), result.getColumn());
+                text = trimmed.getText(); line = trimmed.getLine(); column = trimmed.getColumn();
+    }
+        return fim_args(text.substr(0), line, column);
+    }
+    if(text.length() > 1 && str.substr(0, 1) == "("){
+        result = expressão(text.substr(1), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+        trimmed = trim(result.getText(), result.getLine(), result.getColumn());
+                text = trimmed.getText(); line = trimmed.getLine(); column = trimmed.getColumn();
+    }
+    if(text.length() > 1 && str.substr(0, 1) == ")"){
+        result = mid_args(text.substr(1), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+        trimmed = trim(result.getText(), result.getLine(), result.getColumn());
+                text = trimmed.getText(); line = trimmed.getLine(); column = trimmed.getColumn();
+    }
+        return fim_args(text.substr(0), line, column);
+    }
+    if(text.length() > 1 && str.substr(0, 1) == "!"){
+        result = expressão(text.substr(1), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+        trimmed = trim(result.getText(), result.getLine(), result.getColumn());
+                text = trimmed.getText(); line = trimmed.getLine(); column = trimmed.getColumn();
+    }
+        return mid_args(text.substr(0), line, column);
+        trimmed = trim(result.getText(), result.getLine(), result.getColumn());
+                text = trimmed.getText(); line = trimmed.getLine(); column = trimmed.getColumn();
+    }
+        return fim_args(text.substr(0), line, column);
+    }
+    if(text.length() > 1 && isalpha(str[0])){
+        result = barra_id(text.substr(5), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+        trimmed = trim(result.getText(), result.getLine(), result.getColumn());
+                text = trimmed.getText(); line = trimmed.getLine(); column = trimmed.getColumn();
+    }
+        return prioridade_iden(text.substr(0), line, column);
+        trimmed = trim(result.getText(), result.getLine(), result.getColumn());
+                text = trimmed.getText(); line = trimmed.getLine(); column = trimmed.getColumn();
+    }
+        return mid_args(text.substr(0), line, column);
+        trimmed = trim(result.getText(), result.getLine(), result.getColumn());
+                text = trimmed.getText(); line = trimmed.getLine(); column = trimmed.getColumn();
+    }
+        return fim_args(text.substr(0), line, column);
+    }
+    if(text.length() > 1 && isdigit(str[0])){
+        result = barra_lista_dígitos(text.substr(5), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+        trimmed = trim(result.getText(), result.getLine(), result.getColumn());
+                text = trimmed.getText(); line = trimmed.getLine(); column = trimmed.getColumn();
+    }
+        return número_branch(text.substr(0), line, column);
+        trimmed = trim(result.getText(), result.getLine(), result.getColumn());
+                text = trimmed.getText(); line = trimmed.getLine(); column = trimmed.getColumn();
+    }
+        return mid_args(text.substr(0), line, column);
+        trimmed = trim(result.getText(), result.getLine(), result.getColumn());
+                text = trimmed.getText(); line = trimmed.getLine(); column = trimmed.getColumn();
+    }
+        return fim_args(text.substr(0), line, column);
+    }
+}
+ResultType args_texto(string text_original, int line, int column){
+    ResultType trimmed = trim(text_original, l, c);
+    ResultType result(true, trimmed.getText(), trimmed.getLine(), trimmed.getColumn());
+    string text = trimmed.getText(); int line = trimmed.getLine(); int column = trimmed.getColumn();
+    if(text.length() > 2 && str.substr(0, 2) == "=="){
+        result = expressão_termo_lógico(text.substr(2), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+    }
+    if(text.length() > 4 && str.substr(0, 4) == " && "){
+        result = expressão(text.substr(4), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+    }
+    if(text.length() > 4 && str.substr(0, 4) == " || "){
+        result = expressão(text.substr(4), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+    }
+    return ResultType(true, text, l, c); 
+}
+ResultType mid_args(string text_original, int line, int column){
+    ResultType trimmed = trim(text_original, l, c);
+    ResultType result(true, trimmed.getText(), trimmed.getLine(), trimmed.getColumn());
+    string text = trimmed.getText(); int line = trimmed.getLine(); int column = trimmed.getColumn();
+    if(text.length() > 1 && str.substr(0, 1) == "∗"){
+        result = prioridade_baixa(text.substr(1), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+        trimmed = trim(result.getText(), result.getLine(), result.getColumn());
+                text = trimmed.getText(); line = trimmed.getLine(); column = trimmed.getColumn();
+    }
+        return matemática_prioridade_baixa(text.substr(0), line, column);
+        trimmed = trim(result.getText(), result.getLine(), result.getColumn());
+                text = trimmed.getText(); line = trimmed.getLine(); column = trimmed.getColumn();
+    }
+        return termo_lógico_mat(text.substr(0), line, column);
+        trimmed = trim(result.getText(), result.getLine(), result.getColumn());
+                text = trimmed.getText(); line = trimmed.getLine(); column = trimmed.getColumn();
+    }
+        return expressão_termo_lógico(text.substr(0), line, column);
+    }
+    if(text.length() > 1 && str.substr(0, 1) == "/"){
+        result = prioridade_baixa(text.substr(1), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+        trimmed = trim(result.getText(), result.getLine(), result.getColumn());
+                text = trimmed.getText(); line = trimmed.getLine(); column = trimmed.getColumn();
+    }
+        return matemática_prioridade_baixa(text.substr(0), line, column);
+        trimmed = trim(result.getText(), result.getLine(), result.getColumn());
+                text = trimmed.getText(); line = trimmed.getLine(); column = trimmed.getColumn();
+    }
+        return termo_lógico_mat(text.substr(0), line, column);
+        trimmed = trim(result.getText(), result.getLine(), result.getColumn());
+                text = trimmed.getText(); line = trimmed.getLine(); column = trimmed.getColumn();
+    }
+        return expressão_termo_lógico(text.substr(0), line, column);
+    }
+    if(text.length() > 1 && str.substr(0, 1) == "%"){
+        result = prioridade_baixa(text.substr(1), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+        trimmed = trim(result.getText(), result.getLine(), result.getColumn());
+                text = trimmed.getText(); line = trimmed.getLine(); column = trimmed.getColumn();
+    }
+        return matemática_prioridade_baixa(text.substr(0), line, column);
+        trimmed = trim(result.getText(), result.getLine(), result.getColumn());
+                text = trimmed.getText(); line = trimmed.getLine(); column = trimmed.getColumn();
+    }
+        return termo_lógico_mat(text.substr(0), line, column);
+        trimmed = trim(result.getText(), result.getLine(), result.getColumn());
+                text = trimmed.getText(); line = trimmed.getLine(); column = trimmed.getColumn();
+    }
+        return expressão_termo_lógico(text.substr(0), line, column);
+    }
+    if(text.length() > 1 && str.substr(0, 1) == "+"){
+        result = matemática(text.substr(1), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+        trimmed = trim(result.getText(), result.getLine(), result.getColumn());
+                text = trimmed.getText(); line = trimmed.getLine(); column = trimmed.getColumn();
+    }
+        return termo_lógico_mat(text.substr(0), line, column);
+        trimmed = trim(result.getText(), result.getLine(), result.getColumn());
+                text = trimmed.getText(); line = trimmed.getLine(); column = trimmed.getColumn();
+    }
+        return expressão_termo_lógico(text.substr(0), line, column);
+    }
+    if(text.length() > 1 && str.substr(0, 1) == "−"){
+        result = matemática(text.substr(1), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+        trimmed = trim(result.getText(), result.getLine(), result.getColumn());
+                text = trimmed.getText(); line = trimmed.getLine(); column = trimmed.getColumn();
+    }
+        return termo_lógico_mat(text.substr(0), line, column);
+        trimmed = trim(result.getText(), result.getLine(), result.getColumn());
+                text = trimmed.getText(); line = trimmed.getLine(); column = trimmed.getColumn();
+    }
+        return expressão_termo_lógico(text.substr(0), line, column);
+    }
+    if(text.length() > 2 && str.substr(0, 2) == "=="){
+        result = termo_lógico(text.substr(2), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+        trimmed = trim(result.getText(), result.getLine(), result.getColumn());
+                text = trimmed.getText(); line = trimmed.getLine(); column = trimmed.getColumn();
+    }
+        return expressão_termo_lógico(text.substr(0), line, column);
+    }
+    if(text.length() > 2 && str.substr(0, 2) == "!="){
+        result = termo_lógico(text.substr(2), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+        trimmed = trim(result.getText(), result.getLine(), result.getColumn());
+                text = trimmed.getText(); line = trimmed.getLine(); column = trimmed.getColumn();
+    }
+        return expressão_termo_lógico(text.substr(0), line, column);
+    }
+    if(text.length() > 2 && str.substr(0, 2) == ">="){
+        result = termo_lógico(text.substr(2), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+        trimmed = trim(result.getText(), result.getLine(), result.getColumn());
+                text = trimmed.getText(); line = trimmed.getLine(); column = trimmed.getColumn();
+    }
+        return expressão_termo_lógico(text.substr(0), line, column);
+    }
+    if(text.length() > 2 && str.substr(0, 2) == "<="){
+        result = termo_lógico(text.substr(2), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+        trimmed = trim(result.getText(), result.getLine(), result.getColumn());
+                text = trimmed.getText(); line = trimmed.getLine(); column = trimmed.getColumn();
+    }
+        return expressão_termo_lógico(text.substr(0), line, column);
+    }
+    if(text.length() > 1 && str.substr(0, 1) == ">"){
+        result = termo_lógico(text.substr(1), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+        trimmed = trim(result.getText(), result.getLine(), result.getColumn());
+                text = trimmed.getText(); line = trimmed.getLine(); column = trimmed.getColumn();
+    }
+        return expressão_termo_lógico(text.substr(0), line, column);
+    }
+    if(text.length() > 1 && str.substr(0, 1) == "<"){
+        result = termo_lógico(text.substr(1), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+        trimmed = trim(result.getText(), result.getLine(), result.getColumn());
+                text = trimmed.getText(); line = trimmed.getLine(); column = trimmed.getColumn();
+    }
+        return expressão_termo_lógico(text.substr(0), line, column);
+    }
+    if(text.length() > 4 && str.substr(0, 4) == " && "){
+        result = expressão(text.substr(4), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+    }
+    if(text.length() > 4 && str.substr(0, 4) == " || "){
+        result = expressão(text.substr(4), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+    }
+    return ResultType(true, text, l, c); 
+}
+ResultType fim_args(string text_original, int line, int column){
+    ResultType trimmed = trim(text_original, l, c);
+    ResultType result(true, trimmed.getText(), trimmed.getLine(), trimmed.getColumn());
+    string text = trimmed.getText(); int line = trimmed.getLine(); int column = trimmed.getColumn();
+    if(text.length() > 1 && str.substr(0, 1) == ","){
+        result = argumentos(text.substr(1), line, column);
+        if(!result.getAccept()){
+            return result;
+        }
+    }
+    return ResultType(true, text, l, c); 
+}
