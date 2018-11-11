@@ -16,7 +16,7 @@ def parse_text():
 
         TABLE[lhs] = []
         for attr in rhs.split(" | "):
-            TABLE[lhs].append(attr)
+            TABLE[lhs].append(attr.replace(' ', ''))
 
 
 def first_rule(key):
@@ -61,7 +61,20 @@ def second_rule(key):
 def factorizantion(key):
     repeat = {}
     for element in TABLE[key]:
-        pass    
+        texto = ""
+        for letter in element:
+            if letter == '<':
+                break
+            texto += letter
+        if texto != "":
+            if texto in repeat:
+                repeat[texto] += 1
+            else:
+                repeat[texto] = 1
+
+    #for ele in repeat:
+    #    print(key + " -> " + ele + " : " + str(repeat[ele]))
+
 
 def main():
     parse_text()
@@ -69,14 +82,14 @@ def main():
     while stop == True:
         for key in TABLE:
             first_rule(key)
-        for key in TABLE:
-            factorizantion(key)
+        #for key in TABLE:
+            #factorizantion(key)
         for key in TABLE:
             if not second_rule(key):
                 stop = False
             else:
                 stop = True
-
+        break
     for key in TABLE:
         NEWFILE.write(key + " ::= " + " | ".join(x for x in TABLE[key]) + "\n")
         
