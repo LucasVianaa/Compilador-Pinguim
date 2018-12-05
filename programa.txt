@@ -1,0 +1,55 @@
+Declare{
+    Int A, B, somaDivA, somaDivB, soma, i;
+    String mensagem, temp;
+    List<String> entrada;
+};
+
+Functions{
+    Int getSomaDivisores(Int x){
+        soma = 0;
+        for(i = 1; i < x; i = i + 1;){
+            soma = soma + i;
+        };
+        return soma;
+    };
+};
+
+Main{
+
+    scan(temp);
+    entrada = split(temp, " ");
+    A = int(entrada[0]);
+    B = int(entrada[1]);
+    while(A != && B != 0){
+        somaDivA = getSomaDivisores(A);
+        somaDivB = getSomaDivisores(B);
+
+        mensagem = "";
+        if(((B % somaDivA) == 0) && ((A % somaDivB) == 0)){
+            mensagem = "Friends and lovers <3";
+        } else {
+            if(somaDivA == somaDivB){
+                mensagem = "Almost lovers!";
+            } else {
+                if(((B % somaDivA) != 0) && ((A % somaDivB) == 0)){
+                    mensagem = concat(mensagem, str(A));
+                    mensagem = concat(mensagem, " friendzoned ");
+                    mensagem = concat(mensagem, str(B));
+                } else {
+                    if(((B % somaDivA) == 0) && ((A % somaDivB) != 0)){
+                        mensagem = concat(mensagem, str(B));
+                        mensagem = concat(mensagem, " friendzoned ");
+                        mensagem = concat(mensagem, str(A));
+                    } else{
+                        mensagem = "No connection.";
+                    };
+                };
+            };
+        };
+        print(mensagem);
+        scan(temp);
+        entrada = split(temp, " ");
+        A = int(entrada[0]);
+        B = int(entrada[1]);
+    };
+};

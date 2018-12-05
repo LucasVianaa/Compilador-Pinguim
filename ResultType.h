@@ -15,9 +15,11 @@ public:
     string getText();
     int getLine();
     int getColumn();
+    string getError();
 
     void setAccept(bool a);
     void setText(string t);
     void setLine(int l);
     void setColumn(int c);
+    void setError(string e);
 };

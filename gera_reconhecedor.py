@@ -44,18 +44,7 @@ def number_of_chars_terminal(element):
                 break
     return count
 
-#Template para método 
-'''
-resultType nome_derivação(string original_text, int line, int column){
-    
-    ResultType aux = trim(original_text, line, column);
-    string text = aux.getText(); int line = aux.getLine(); int column = aux.getColumn();
 
-    //corpo
-
-    return resultType(Parametros); // se vazio true e se falso invalid expression
-}
-'''
 #∅
 
 def find_next_non_terminal(text):
@@ -81,17 +70,27 @@ def generate_element(value):
             num_term = value.replace("`SP`", " ").find(' ')
         if value != "∅":
             if num_term == 0:
-                to_insert += "        trimmed = trim(result.getText(), result.getLine(), result.getColumn());\n\
+                to_insert += "trimmed = trim(result.getText(), result.getLine(), result.getColumn());\n\
                 text = trimmed.getText(); line = trimmed.getLine(); column = trimmed.getColumn();\n"
             next_non_terminal = find_next_non_terminal(value.replace("`SP`", " ").replace("-", "_")[num_term:].lower())
             if(num_term > 0):            
                 COUNTIF += 1
+                if value.replace("`SP`", " ")[0:num_term] == "[A-z 0-9?!+-/*=:[]]":
+                    to_insert += "  result.setError(\"Invalid character\"); \n";
+                elif value.replace("`SP`", " ")[0:num_term] == "[A-z]":
+                    to_insert += "  result.setError(\"Expected letter\"); \n";
+                elif value.replace("`SP`", " ")[0:num_term] == "[0-9]":
+                    to_insert += "  result.setError(\"Expected number\"); \n";
+                elif value.replace("`SP`", " ")[0:num_term] == "\"":
+                    to_insert += "  result.setError(\"Expected \\"+ value.replace("`SP`", " ")[0:num_term] + "\"); \n";
+                else:
+                    to_insert += "  result.setError(\"Expected "+ value.replace("`SP`", " ")[0:num_term] + "\"); \n";
+                
                 if len(value) == num_term:
                     to_insert += "    if(text.length() >= "
                 else:
                     to_insert += "    if(text.length() > "
                 if value.replace("`SP`", " ")[0:num_term] == "[A-z 0-9?!+-/*=:[]]":
-                    print("plis")
                     to_insert += "1"  +" && istext(text[0])){\n"
                 elif value.replace("`SP`", " ")[0:num_term] == "[A-z]":
                     to_insert += "1"  + " && isalpha(text[0])){\n"
@@ -107,7 +106,7 @@ def generate_element(value):
                     if value.replace("`SP`", " ")[0:num_term] == "[A-z]" or value.replace("`SP`", " ")[0:num_term] == "[0-9]" or value.replace("`SP`", " ")[0:num_term] == "[A-z 0-9?!+-/*=:[]]":
                         to_insert += "        result = " + next_non_terminal + "(text.substr(1), line, column);\n"
                     else:
-                        to_insert += "        result = " + next_non_terminal + "(text.substr("+str(num_term)+"), line, column);\n"
+                        to_insert += "        result = " + next_non_terminal + "(text.substr("+str(num_term)+"), line, column + " + str(num_term) + ");\n"
                     to_insert += "        if(!result.getAccept()){\n"
                     to_insert += "            return result;\n"
                     to_insert += "        }\n"
@@ -122,7 +121,8 @@ def generate_element(value):
                 to_insert += "        trimmed = trim(result.getText(), result.getLine(), result.getColumn());\n\
             text = trimmed.getText(); line = trimmed.getLine(); column = trimmed.getColumn();\n"
         else:
-            to_insert += "    return result; \n"
+            print("")
+            #to_insert += "    return result; \n"
         if ' ' in value.replace("`SP`", " ")[0:old]:
             value = value.replace("`SP`", " ")[(num_term + 1):]
         else:
@@ -152,10 +152,13 @@ def generate(key):
             if x < COUNTIF-1:
                 CODE += "}else{\n"
                 CODE += "result.setAccept(false);\n"
-                CODE += "return result;\n"
                 CODE += "}\n"
             else:
+                CODE += "return result; \n"
                 CODE += "}\n"
+    #if "∅" not in TABLE[key]:
+    #    CODE += "result.setAccept(false);\n"
+    #    CODE += "return result;\n"
     CODE += "}\n"
 
 def generate_header(key):

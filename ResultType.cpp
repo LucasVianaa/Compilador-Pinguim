@@ -31,6 +31,10 @@ string ResultType::getText(){
     return text;
 }
 
+string ResultType::getError(){
+    return error;
+}
+
 void ResultType::setAccept(bool a){
     accept = a;
 }
@@ -42,4 +46,7 @@ void ResultType::setLine(int l){
 }
 void ResultType::setColumn(int c){
     column = c;
+}
+void ResultType::setError(string e){
+    error = e;
 }

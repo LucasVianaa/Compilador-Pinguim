@@ -1,35 +1,36 @@
 <Programa> ::= Declare{<Lista-Declaracoes>}; Functions{<Lista-funcoes>}; Main{<Lista-Instrucoes>};
-<Lista-Instrucoes> ::= return`SP`<Identificador-expressao>; <Lista-Instrucoes> | if(<expressao>)<Bloco><Se-senao>; <Lista-Instrucoes> | while(<expressao>)<Bloco>; <Lista-Instrucoes> | for(<atribuicao>; <expressao>; <atribuicao>)<Bloco>; <Lista-Instrucoes> | [A-z]<Barra-Id><instrucao-Iden>; <Lista-Instrucoes> | ∅
+<Lista-Instrucoes> ::= return`SP`<Identificador-expressao>; <Lista-Instrucoes> | if(<expressao>)<Bloco><Se-senao>; <Lista-Instrucoes> | while(<expressao>)<Bloco>; <Lista-Instrucoes> | for(<atribuicao> <expressao>; <atribuicao>)<Bloco>; <Lista-Instrucoes> | [A-z]<Barra-Id><instrucao-Iden>; <Lista-Instrucoes> | ∅
 <Lista-funcoes> ::= Float`SP`<Identificador>(<parametros>)<Bloco>;<Lista-funcoes> | Int`SP`<Identificador>(<parametros>)<Bloco>;<Lista-funcoes> | String`SP`<Identificador>(<parametros>)<Bloco>;<Lista-funcoes> | Char`SP`<Identificador>(<parametros>)<Bloco>;<Lista-funcoes> | Boolean`SP`<Identificador>(<parametros>)<Bloco>;<Lista-funcoes> | List<<Tipo>>`SP`<Identificador>(<parametros>)<Bloco>;<Lista-funcoes> | ∅
 <Lista-Declaracoes> ::= Float`SP`<Lista-Identificadores>; <Lista-Declaracoes> | Int`SP`<Lista-Identificadores>; <Lista-Declaracoes> | String`SP`<Lista-Identificadores>; <Lista-Declaracoes> | Char`SP`<Lista-Identificadores>; <Lista-Declaracoes> | Boolean`SP`<Lista-Identificadores>; <Lista-Declaracoes> | List<<Tipo>>`SP`<Lista-Identificadores>; <Lista-Declaracoes> | ∅
 <Bloco> ::= {<Lista-Instrucoes>}
-<instrucao-Iden> ::= (<Argumentos>) | [<expressao>]<atribuicao-Valores> | = <atribuicao-valores-branch>
+<instrucao-Iden> ::= (<Argumentos>) | [<expressao>]<chama_vetor><atribuicao-Valores> | = <atribuicao-valores-branch> 
 <Se-senao> ::= else<Bloco> | ∅
 <Tipo> ::= Float | Int | String | Char | Boolean | List<<Tipo>>
 <parametros> ::= Float`SP`<Identificador><Lista-parametros> | Int`SP`<Identificador><Lista-parametros> | String`SP`<Identificador><Lista-parametros> | Char`SP`<Identificador><Lista-parametros> | Boolean`SP`<Identificador><Lista-parametros> | List<<Tipo>>`SP`<Identificador><Lista-parametros>
 <Lista-parametros> ::= , <parametros> | ∅
 <atribuicao> ::= [A-z]<Barra-Id><atribuicao-Vetor><atribuicao-Valores>;
-<atribuicao-Vetor> ::= [<expressao>] | ∅
+<atribuicao-Vetor> ::= [<expressao>]<chama_vetor> | ∅
 <atribuicao-Valores> ::= = <atribuicao-valores-branch>
 <atribuicao-valores-branch> ::= (<expressao>)<Fim-Mat> | !<expressao><Fim-Mat> | [A-z]<Barra-Id><Prioridade-Iden><Fim-Mat> | [0-9]<Barra-Lista-digitos><numero-Branch><Fim-Mat> | "<Texto>" | True | False
 <booleano> ::= True | False
 <expressao> ::= "<Texto>" <Termo-logico-Texto><expressao-Termo-logico> | (<expressao>)<Mid-Args> | !<expressao><Mid-Args> | [A-z]<Barra-Id><Prioridade-Iden><Mid-Args> | [0-9]<Barra-Lista-digitos><numero-Branch><Mid-Args>
 <expressao-Termo-logico> ::= `SP`&&`SP`<expressao> | `SP`||`SP`<expressao> | ∅
 <Termo-logico> ::= "<Texto>" <Termo-logico-Texto> | (<expressao>)<Fim-Termo-logico> | !<expressao><Fim-Termo-logico> | [A-z]<Barra-Id><Prioridade-Iden><Fim-Termo-logico> | [0-9]<Barra-Lista-digitos><numero-Branch><Fim-Termo-logico>
-<Fim-Termo-logico> ::= ∗ <Prioridade-Baixa><matematica-Prioridade-Baixa><Termo-logico-Mat> | / <Prioridade-Baixa><matematica-Prioridade-Baixa><Termo-logico-Mat> | % <Prioridade-Baixa><matematica-Prioridade-Baixa><Termo-logico-Mat> | + <matematica><Termo-logico-Mat> | − <matematica><Termo-logico-Mat> | == <Termo-logico> | != <Termo-logico> | >= <Termo-logico> | <= <Termo-logico> | > <Termo-logico> | < <Termo-logico> | ∅
+<Fim-Termo-logico> ::= ∗ <Prioridade-Baixa><matematica-Prioridade-Baixa><Termo-logico-Mat> | / <Prioridade-Baixa><matematica-Prioridade-Baixa><Termo-logico-Mat> | % <Prioridade-Baixa><matematica-Prioridade-Baixa><Termo-logico-Mat> | + <matematica><Termo-logico-Mat> | - <matematica><Termo-logico-Mat> | == <Termo-logico> | != <Termo-logico> | >= <Termo-logico> | <= <Termo-logico> | > <Termo-logico> | < <Termo-logico> | ∅
 <Termo-logico-Texto> ::= == <Termo-logico> | ∅
 <Termo-logico-Mat> ::= == <Termo-logico> | != <Termo-logico> | >= <Termo-logico> | <= <Termo-logico> | > <Termo-logico> | < <Termo-logico> | ∅
-<Texto> ::= [A-z`SP`0-9?!+-/*=:[]]<Barra-Texto>
+<Texto> ::= [A-z`SP`0-9?!+-/*=:[]]<Barra-Texto> | ∅
+<chama_vetor> ::= [<expressao>]<chama_vetor> | ∅
 <Barra-Texto> ::= [A-z`SP`0-9?!+-/*=:[]]<Barra-Texto> | ∅
 <matematica> ::= (<expressao>)<Fim-Mat> | !<expressao><Fim-Mat> | [A-z]<Barra-Id><Prioridade-Iden><Fim-Mat> | [0-9]<Barra-Lista-digitos><numero-Branch><Fim-Mat>
-<Fim-Mat> ::= ∗ <Prioridade-Baixa><matematica-Prioridade-Baixa> | / <Prioridade-Baixa><matematica-Prioridade-Baixa> | % <Prioridade-Baixa><matematica-Prioridade-Baixa> | + <matematica> | − <matematica> | ∅
+<Fim-Mat> ::= ∗ <Prioridade-Baixa><matematica-Prioridade-Baixa> | / <Prioridade-Baixa><matematica-Prioridade-Baixa> | % <Prioridade-Baixa><matematica-Prioridade-Baixa> | + <matematica> | - <matematica> | ∅
 <Prioridade-Baixa> ::= (<expressao>)<Prioridade-Baixa-Alta>  | !<expressao><Prioridade-Baixa-Alta>  | [A-z]<Barra-Id><Prioridade-Iden><Prioridade-Baixa-Alta> | [0-9]<Barra-Lista-digitos><numero-Branch><Prioridade-Baixa-Alta>
-<Prioridade-Iden> ::= [<expressao>] | (<Argumentos>) | ∅
+<Prioridade-Iden> ::= [<expressao>]<chama_vetor> | (<Argumentos>) | ∅
 <Prioridade-Baixa-Alta> ::= ∗ <Prioridade-Baixa> | / <Prioridade-Baixa> | % <Prioridade-Baixa> | ∅
-<Lista-Identificadores> ::= [A-z]<Barra-Id><Lista-Identificadores-Mult>
+<Lista-Identificadores> ::= [A-z]<Barra-Id><Lista-Identificadores-Mult> | ∅
 <Lista-Identificadores-Mult> ::= , <Lista-Identificadores> | ∅
 <Identificador-expressao> ::= [A-z]<Barra-Id><Identificador-expressao-Vetor>
-<Identificador-expressao-Vetor> ::= [<expressao>] | ∅
+<Identificador-expressao-Vetor> ::= [<expressao>]<chama_vetor> | ∅
 <Identificador> ::= [A-z]<Barra-Id>
 <Barra-Id> ::= [A-z]<Barra-Id> | ∅
 <numero-Branch> ::= .<Lista-digitos> | ∅
@@ -37,6 +38,6 @@
 <Barra-Lista-digitos> ::= [0-9]<Barra-Lista-digitos> | ∅
 <Argumentos> ::= "<Texto>" <Args-Texto><Fim-Args> | (<expressao>)<Mid-Args><Fim-Args> | !<expressao><Mid-Args><Fim-Args> | [A-z]<Barra-Id><Prioridade-Iden><Mid-Args><Fim-Args> | [0-9]<Barra-Lista-digitos><numero-Branch><Mid-Args><Fim-Args>
 <Args-Texto> ::= == <expressao-Termo-logico> | `SP`&&`SP`<expressao> | `SP`||`SP`<expressao> | ∅
-<Mid-Args> ::= ∗ <Prioridade-Baixa><matematica-Prioridade-Baixa><Termo-logico-Mat><expressao-Termo-logico> | / <Prioridade-Baixa><matematica-Prioridade-Baixa><Termo-logico-Mat><expressao-Termo-logico> | % <Prioridade-Baixa><matematica-Prioridade-Baixa><Termo-logico-Mat><expressao-Termo-logico> | + <matematica><Termo-logico-Mat><expressao-Termo-logico> | − <matematica><Termo-logico-Mat><expressao-Termo-logico> | == <Termo-logico><expressao-Termo-logico> | != <Termo-logico><expressao-Termo-logico> | >= <Termo-logico><expressao-Termo-logico> | <= <Termo-logico><expressao-Termo-logico> | > <Termo-logico><expressao-Termo-logico> | < <Termo-logico><expressao-Termo-logico> | `SP`&&`SP`<expressao> | `SP`||`SP`<expressao> | ∅
+<Mid-Args> ::= ∗ <Prioridade-Baixa><matematica-Prioridade-Baixa><Termo-logico-Mat><expressao-Termo-logico> | / <Prioridade-Baixa><matematica-Prioridade-Baixa><Termo-logico-Mat><expressao-Termo-logico> | % <Prioridade-Baixa><matematica-Prioridade-Baixa><Termo-logico-Mat><expressao-Termo-logico> | + <matematica><Termo-logico-Mat><expressao-Termo-logico> | - <matematica><Termo-logico-Mat><expressao-Termo-logico> | == <Termo-logico><expressao-Termo-logico> | != <Termo-logico><expressao-Termo-logico> | >= <Termo-logico><expressao-Termo-logico> | <= <Termo-logico><expressao-Termo-logico> | > <Termo-logico><expressao-Termo-logico> | < <Termo-logico><expressao-Termo-logico> | `SP`&&`SP`<expressao> | `SP`||`SP`<expressao> | ∅
 <Fim-Args> ::= , <Argumentos> | ∅
-<matematica-Prioridade-Baixa> ::= + <matematica> | − <matematica> | ∅
+<matematica-Prioridade-Baixa> ::= + <matematica> | - <matematica> | ∅
