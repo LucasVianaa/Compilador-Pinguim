@@ -9,18 +9,18 @@
 #include <map>
 
 #include "ResultType.h"
+#include "analisadorSemantico.h"
 
 using namespace std;
 
-list<>
-map<String, list<Variable>> SCOPES;
-map<String, list<Variable>> CALLS;
-list<String> OPERATIONS;
+map<string, list<Variable>> SCOPES;
+map<string, list<Variable>> CALLS;
+list<string> OPERATIONS;
 
 class Variable{
 private:
     string name, type;
-    int line, int column;
+    int line, column;
 public:
     Variable(string n, string t, int l, int c){
         name = n;
@@ -89,7 +89,7 @@ void build_scopes(string text_original, int l, int c){
 }
 
 
-void analyze(String text){
+void analyze(string text){
     ResultType result;
     text = rtrim_copy(text);
     

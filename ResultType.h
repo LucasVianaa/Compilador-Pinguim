@@ -1,3 +1,5 @@
+#ifndef RESULT_TYPE_H
+#define RESULT_TYPE_H
 #include <string>
 using namespace std;
 class ResultType{
@@ -23,3 +25,4 @@ public:
     void setColumn(int c);
     void setError(string e);
 };
+#endif
